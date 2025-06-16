@@ -1,21 +1,30 @@
+
+
 @extends('frontend.layout')
 
 @section('content')
-<h2>Our Juices</h2>
+<div style="max-width: 1200px; margin: auto; padding: 20px;">
+    <h1 style="text-align: center; margin-bottom: 40px;">Our Juices</h1>
 
-<div class="row">
-@foreach($juices as $juice)
-  <div class="col-md-4 mb-4">
-    <div class="card h-100">
-      <img src="{{ asset('storage/' . $juice->image) }}" class="card-img-top" alt="{{ $juice->name }}">
-      <div class="card-body d-flex flex-column">
-        <h5 class="card-title">{{ $juice->name }}</h5>
-        <p class="card-text">{{ $juice->description }}</p>
-        <p class="fw-bold">${{ number_format($juice->price, 2) }}</p>
-        <a href="https://wa.me/yourwhatsappnumber?text=I%20want%20to%20order%20the%20{{ urlencode($juice->name) }}" target="_blank" class="btn btn-success mt-auto">Order via WhatsApp</a>
-      </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+        @forelse($juices as $juice)
+            <div style="border: 1px solid #ccc; border-radius: 10px; padding: 15px; width: 280px; text-align: center; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">
+                @if($juice->image)
+                    <img src="{{ asset('storage/' . $juice->image) }}" alt="{{ $juice->name }}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px;">
+                @else
+                    <p>No image available</p>
+                @endif
+
+                <h3 style="margin: 15px 0 5px;">{{ $juice->name }}</h3>
+                <p style="font-size: 14px; color: #555;">{{ $juice->description }}</p>
+                <p style="margin-top: 10px; font-weight: bold;">UGX {{ number_format($juice->price) }}</p>
+            </div>
+        @empty
+            <p>No juices found.</p>
+        @endforelse
     </div>
-  </div>
-@endforeach
 </div>
+
+@include('frontend.footer')
+
 @endsection

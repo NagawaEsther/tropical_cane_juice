@@ -12,9 +12,7 @@
                     {{ __("You're logged in!") }}
                 </div>
             </div>
-            <x-responsive-nav-link :href="route('juices.index')" :active="request()->routeIs('juices.*')">
-    {{ __('Juices') }}
-</x-responsive-nav-link>
+            
 
         </div>
     </div>

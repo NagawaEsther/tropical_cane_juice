@@ -14,6 +14,18 @@ class JuiceController extends Controller
         return view('juices.index', compact('juices'));
     }
 
+//    public function publicIndex()
+
+// {
+//     $juices = \App\Models\Juice::latest()->get(); // fetch all juices
+//     return view('frontend.juices', compact('juices'));
+// }
+
+public function show(Juice $juice)
+    {
+        return view('juices.show', compact('juice'));
+    }
+    
     public function create()
     {
         return view('juices.create');
