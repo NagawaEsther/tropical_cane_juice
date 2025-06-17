@@ -1,10 +1,8 @@
-
-
 @extends('layouts.app')
 
 @section('content')
 <style>
-    .about-container {
+    .hero-container {
         max-width: 700px;
         margin: 30px auto;
         background: #ffffff;
@@ -13,24 +11,39 @@
         box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     }
 
-    .about-container h1 {
+    .hero-container h1 {
         text-align: center;
         margin-bottom: 25px;
         color: #006d77;
         font-weight: bold;
     }
 
-    .about-form label {
+    .hero-container .breadcrumb {
+        font-size: 14px;
+        color: #6b7280;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .hero-container .breadcrumb a {
+        text-decoration: none;
+        color: #3b82f6;
+    }
+
+    .hero-container .breadcrumb span {
+        color: #111827;
+    }
+
+    .hero-form label {
         font-weight: 600;
         margin-bottom: 6px;
         display: block;
         color: #004d00;
     }
 
-    .about-form input[type="text"],
-    .about-form input[type="number"],
-    .about-form textarea,
-    .about-form input[type="file"] {
+    .hero-form input[type="text"],
+    .hero-form textarea,
+    .hero-form input[type="file"] {
         width: 100%;
         padding: 12px 14px;
         border: 1px solid #ccc;
@@ -41,17 +54,17 @@
         transition: border 0.3s;
     }
 
-    .about-form input:focus,
-    .about-form textarea:focus {
+    .hero-form input:focus,
+    .hero-form textarea:focus {
         border-color: #00b4d8;
         outline: none;
     }
 
-    .about-form textarea {
+    .hero-form textarea {
         resize: vertical;
     }
 
-    .about-form button {
+    .hero-form button {
         width: 100%;
         padding: 12px;
         background-color: #38b000;
@@ -64,7 +77,7 @@
         transition: background-color 0.3s;
     }
 
-    .about-form button:hover {
+    .hero-form button:hover {
         background-color: #2d6a4f;
     }
 
@@ -87,34 +100,34 @@
     small.text-danger {
         color: #d9534f;
         font-size: 0.9rem;
+        display: block;
+        margin-bottom: 10px;
     }
 </style>
 
-<div class="about-container">
-    <h1>Add New About Section</h1>
+<div class="hero-container">
+    <h1>Add New Tips Image</h1>
 
-    <form action="{{ route('admin.about_sections.store') }}" method="POST" enctype="multipart/form-data" class="about-form">
+    <div class="breadcrumb">
+        <a href="{{ route('dashboard') }}">Dashboard</a> / 
+        <a href="{{ route('admin.tips_images.index') }}">Tips Images</a> / 
+        <span>Add</span>
+    </div>
+
+    <form action="{{ route('admin.tips_images.store') }}" method="POST" enctype="multipart/form-data" class="hero-form">
         @csrf
 
-        <label for="order">Order (optional)</label>
-        <input type="number" name="order" id="order" value="{{ old('order') }}">
-        @error('order') <small class="text-danger">{{ $message }}</small> @enderror
-
-        <label for="title">Title (optional)</label>
+        <label for="title">Title</label>
         <input type="text" name="title" id="title" value="{{ old('title') }}">
         @error('title') <small class="text-danger">{{ $message }}</small> @enderror
 
-        <label for="description">Description (optional)</label>
-        <textarea name="description" id="description" rows="5">{{ old('description') }}</textarea>
-        @error('description') <small class="text-danger">{{ $message }}</small> @enderror
-
-        <label for="image">Image (optional)</label>
+        <label for="image">Image</label>
         <input type="file" name="image" id="image">
         @error('image') <small class="text-danger">{{ $message }}</small> @enderror
 
-        <button type="submit">Save Section</button>
+        <button type="submit">Save Tips Image</button>
     </form>
 
-    <a href="{{ route('admin.about_sections.index') }}" class="btn-secondary">Cancel</a>
+    <a href="{{ route('admin.tips_images.index') }}" class="btn-secondary">Cancel</a>
 </div>
 @endsection

@@ -1,4 +1,3 @@
-
 @extends('frontend.layout')
 
 @section('content')
@@ -103,12 +102,19 @@
         gap: 40px;
     }
 
-    .row img {
-        border-radius: 20px;
-        max-height: 320px;
+    .row .image-container {
         width: 100%;
-        object-fit: cover;
+        max-width: 400px; /* Fixed max-width for both images */
+        height: 300px; /* Fixed height for uniform size */
+        overflow: hidden;
+        border-radius: 20px;
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .row .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures images fill container uniformly */
     }
 
     .why-us {
@@ -150,7 +156,7 @@
 
     .dynamic-section {
         margin: 40px 0;
-        padding: 30px;
+        padding: 20px;
         background: #fff;
         border-radius: 15px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -196,6 +202,11 @@
         .flavor-card {
             width: 90%;
         }
+
+        .row .image-container {
+            max-width: 90%;
+            height: 250px; /* Slightly smaller height for mobile */
+        }
     }
 </style>
 
@@ -206,59 +217,44 @@
         Every sip combines nature's sweetness with health-boosting flavors like Lemon & Ginger or Tangerine & Ginger — crafted to energize and nourish.
     </p>
 
-    {{-- Dynamic Sections from Backend --}}
+    {{-- Dynamic Sections from Backend (Excluding Specific Image Sections) --}}
     @if($sections->isNotEmpty())
         @foreach($sections as $section)
-            <div class="dynamic-section">
-                @if($section->title)
-                    <h3>{{ $section->title }}</h3>
-                @endif
-                
-                @if($section->image_path)
-                    <img src="{{ Storage::url($section->image_path) }}" alt="{{ $section->title ?? 'Section Image' }}">
-                @endif
-                
-                @if($section->description)
-                    <p>{{ $section->description }}</p>
-                @endif
-            </div>
+            @if(!in_array($section->title, ['Lemon & Ginger', 'Tangerine & Ginger', 'Our Team', 'Juice Process', 'Our Mission', 'Our Vision', 'Why Choose Tropical Cane?']))
+                <div class="dynamic-section">
+                    @if($section->title)
+                        <h3>{{ $section->title }}</h3>
+                    @endif
+                    
+                    @if($section->image_path)
+                        <img src="{{ Storage::url($section->image_path) }}" alt="{{ $section->title ?? 'Section Image' }}">
+                    @endif
+                    
+                    @if($section->description)
+                        <p>{{ $section->description }}</p>
+                    @endif
+                </div>
+            @endif
         @endforeach
     @endif
 
-   
     <div class="flavors-section">
         <div class="flavor-card">
             @php
                 $lemonSection = $sections->where('title', 'Lemon & Ginger')->first();
             @endphp
-            @if($lemonSection && $lemonSection->image_path)
-                <img src="{{ Storage::url($lemonSection->image_path) }}" alt="Lemon and Ginger">
-            @else
-                <img src="{{ asset('image.s/lemonade.jpg') }}" alt="Lemon and Ginger">
-            @endif
+            <img src="{{ $lemonSection && $lemonSection->image_path ? Storage::url($lemonSection->image_path) : asset('images/lemonade.jpg') }}" alt="Lemon and Ginger">
             <h4>Lemon & Ginger</h4>
-            @if($lemonSection && $lemonSection->description)
-                <p>{{ $lemonSection->description }}</p>
-            @else
-                <p>Refreshing, zesty, and filled with natural antioxidants that awaken your senses.</p>
-            @endif
+            <p>{{ $lemonSection && $lemonSection->description ? $lemonSection->description : 'Refreshing, zesty, and filled with natural antioxidants that awaken your senses.' }}</p>
         </div>
         
         <div class="flavor-card">
             @php
                 $tangerineSection = $sections->where('title', 'Tangerine & Ginger')->first();
             @endphp
-            @if($tangerineSection && $tangerineSection->image_path)
-                <img src="{{ Storage::url($tangerineSection->image_path) }}" alt="Tangerine and Ginger">
-            @else
-                <img src="{{ asset('image.s/tangerine.jpg') }}" alt="Tangerine and Ginger">
-            @endif
+            <img src="{{ $tangerineSection && $tangerineSection->image_path ? Storage::url($tangerineSection->image_path) : asset('images/tangerine.jpg') }}" alt="Tangerine and Ginger">
             <h4>Tangerine & Ginger</h4>
-            @if($tangerineSection && $tangerineSection->description)
-                <p>{{ $tangerineSection->description }}</p>
-            @else
-                <p>Sweet, citrusy, and crafted to uplift your energy – naturally.</p>
-            @endif
+            <p>{{ $tangerineSection && $tangerineSection->description ? $tangerineSection->description : 'Sweet, citrusy, and crafted to uplift your energy – naturally.' }}</p>
         </div>
     </div>
 
@@ -269,49 +265,36 @@
         @endphp
         
         <h3>Our Mission</h3>
-        @if($missionSection && $missionSection->description)
-            <p>{{ $missionSection->description }}</p>
-        @else
-            <p>To deliver 100% pure sugarcane juice made with love – no additives, no water, no preservatives. Just the real thing.</p>
-        @endif
+        <p>{{ $missionSection && $missionSection->description ? $missionSection->description : 'To deliver 100% pure sugarcane juice made with love – no additives, no water, no preservatives. Just the real thing.' }}</p>
         
         <br>
         
         <h3>Our Vision</h3>
-        @if($visionSection && $visionSection->description)
-            <p>{{ $visionSection->description }}</p>
-        @else
-            <p>To lead the East African beverage market by promoting wellness and joy, one refreshing bottle at a time.</p>
-        @endif
+        <p>{{ $visionSection && $visionSection->description ? $visionSection->description : 'To lead the East African beverage market by promoting wellness and joy, one refreshing bottle at a time.' }}</p>
     </div>
-
-    {{-- Team and Process Images --}}
+<br>
     <div class="row">
         <div class="col-md-5">
             @php
                 $teamSection = $sections->where('title', 'Our Team')->first();
             @endphp
-            @if($teamSection && $teamSection->image_path)
-                <img src="{{ Storage::url($teamSection->image_path) }}" alt="Our Team" class="img-fluid">
-            @else
-                <img src="{{ asset('image.s/tc.PNG') }}" alt="Our Team" class="img-fluid">
-            @endif
+            <div class="image-container">
+                <img src="{{ $teamSection && $teamSection->image_path ? Storage::url($teamSection->image_path) : asset('images/tc.PNG') }}" alt="Our Team">
+            </div>
         </div>
+        
         <div class="col-md-5">
             @php
                 $processSection = $sections->where('title', 'Juice Process')->first();
             @endphp
-            @if($processSection && $processSection->image_path)
-                <img src="{{ Storage::url($processSection->image_path) }}" alt="Juice Process" class="img-fluid">
-            @else
-                <img src="{{ asset('image.s/juice process.jpg') }}" alt="Juice Process" class="img-fluid">
-            @endif
+            <div class="image-container">
+                <img src="{{ $processSection && $processSection->image_path ? Storage::url($processSection->image_path) : asset('images/juice_process.jpg') }}" alt="Juice Process">
+            </div>
         </div>
     </div>
 
     <br>
 
- 
     <div class="why-us">
         @php
             $whyUsSection = $sections->where('title', 'Why Choose Tropical Cane?')->first();

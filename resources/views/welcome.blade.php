@@ -1,7 +1,6 @@
 @extends('frontend.layout')
 
 @section('content')
-
 <style>
     html, body {
         background: #ffffff !important;
@@ -11,7 +10,6 @@
         overflow-x: hidden;
     }
 
-    /* Override any parent layout margins/padding */
     .wrapper, .content-wrapper, .main-content, .page-content,
     .container-fluid, .row, .col, [class*="col-"] {
         background: #ffffff !important;
@@ -26,7 +24,6 @@
         max-width: 100% !important;
     }
 
-    /* Hero Section Styles */
     .hero-section {
         position: relative;
         min-height: 100vh;
@@ -159,7 +156,6 @@
         transform: scale(1.2);
     }
 
-    /* Button styles */
     .hero-buttons {
         display: flex;
         gap: 15px;
@@ -194,7 +190,6 @@
         font-size: 1.3em;
     }
 
-    /* CTA Button Style */
     .hero-btn-cta {
         position: absolute;
         bottom: 90px;
@@ -235,66 +230,30 @@
     }
 
     @keyframes popIn {
-        0% {
-            opacity: 0;
-            transform: scale(0.9);
-        }
-        50% {
-            opacity: 0.7;
-            transform: scale(1.05);
-        }
-        100% {
-            opacity: 1;
-            transform: scale(1);
-        }
+        0% { opacity: 0; transform: scale(0.9); }
+        50% { opacity: 0.7; transform: scale(1.05); }
+        100% { opacity: 1; transform: scale(1); }
     }
 
     @keyframes popOut {
-        0% {
-            opacity: 1;
-            transform: scale(1);
-        }
-        50% {
-            opacity: 0.5;
-            transform: scale(0.95);
-        }
-        100% {
-            opacity: 0;
-            transform: scale(0.9);
-        }
+        0% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.5; transform: scale(0.95); }
+        100% { opacity: 0; transform: scale(0.9); }
     }
 
     @keyframes containerFade {
-        0% {
-            opacity: 0;
-            transform: translateY(40px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        0% { opacity: 0; transform: translateY(40px); }
+        100% { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes slideInLeft {
-        0% {
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateX(0);
-        }
+        0% { opacity: 0; transform: translateX(-20px); }
+        100% { opacity: 1; transform: translateX(0); }
     }
 
     @keyframes slideOutRight {
-        0% {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        100% {
-            opacity: 0;
-            transform: translateX(20px);
-        }
+        0% { opacity: 1; transform: translateX(0); }
+        100% { opacity: 0; transform: translateX(20px); }
     }
 
     .wave-particle {
@@ -308,427 +267,117 @@
     }
 
     @keyframes particleWave {
-        0% {
-            opacity: 0;
-            transform: translateY(0) translateX(0) scale(0.5);
-        }
-        20% {
-            opacity: 1;
-            transform: translateY(-25px) translateX(-10px) scale(1);
-        }
-        40% {
-            opacity: 0.8;
-            transform: translateY(-50px) translateX(10px) scale(0.8);
-        }
-        60% {
-            opacity: 0.6;
-            transform: translateY(-75px) translateX(-5px) scale(0.6);
-        }
-        80% {
-            opacity: 0.3;
-            transform: translateY(-100px) translateX(15px) scale(0.4);
-        }
-        100% {
-            opacity: 0;
-            transform: translateY(-125px) translateX(0) scale(0.2);
-        }
+        0% { opacity: 0; transform: translateY(0) translateX(0) scale(0.5); }
+        20% { opacity: 1; transform: translateY(-25px) translateX(-10px) scale(1); }
+        40% { opacity: 0.8; transform: translateY(-50px) translateX(10px) scale(0.8); }
+        60% { opacity: 0.6; transform: translateY(-75px) translateX(-5px) scale(0.6); }
+        80% { opacity: 0.3; transform: translateY(-100px) translateX(15px) scale(0.4); }
+        100% { opacity: 0; transform: translateY(-125px) translateX(0) scale(0.2); }
     }
 
     @keyframes pulse {
-        0% {
-            transform: scale(1);
-            box-shadow: 0 4px 15px rgba(0, 102, 0, 0.4);
-        }
-        50% {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0, 102, 0, 0.5);
-        }
-        100% {
-            transform: scale(1);
-            box-shadow: 0 4px 15px rgba(0, 102, 0, 0.4);
-        }
+        0% { transform: scale(1); box-shadow: 0 4px 15px rgba(0, 102, 0, 0.4); }
+        50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0, 102, 0, 0.5); }
+        100% { transform: scale(1); box-shadow: 0 4px 15px rgba(0, 102, 0, 0.4); }
     }
 
-    /* Responsive adjustments */
     @media (max-width: 1200px) {
-        .hero-main-title {
-            font-size: 3.2em;
-        }
-        .hero-subtitle {
-            font-size: 1.4em;
-        }
-        .flavor-description {
-            font-size: 1.4rem;
-        }
+        .hero-main-title { font-size: 3.2em; }
+        .hero-subtitle { font-size: 1.4em; }
+        .flavor-description { font-size: 1.4rem; }
     }
 
     @media (max-width: 992px) {
-        .hero-main-title {
-            font-size: 2.8em;
-        }
-        #rotating-text {
-            min-height: 160px !important;
-        }
-        .hero-btn-cta {
-            padding: 18px 50px 18px 40px;
-            font-size: 1.4em;
-            min-width: 180px;
-        }
-        .hero-btn-secondary {
-            margin-top: 25px;
-            padding: 16px 35px;
-            font-size: 1.2em;
-        }
+        .hero-main-title { font-size: 2.8em; }
+        #rotating-text { min-height: 160px !important; }
+        .hero-btn-cta { padding: 18px 50px 18px 40px; font-size: 1.4em; min-width: 180px; }
+        .hero-btn-secondary { margin-top: 25px; padding: 16px 35px; font-size: 1.2em; }
     }
 
     @media (max-width: 768px) {
-        .hero-section {
-            min-height: 100vh;
-        }
-        .hero-content {
-            transform: translateY(-20px);
-            padding: 1.5rem;
-        }
-        .hero-main-title {
-            font-size: 2.4em;
-        }
-        .hero-subtitle {
-            font-size: 1.2em;
-            margin-bottom: -15px;
-        }
-        .flavor-description {
-            font-size: 1.2rem;
-        }
-        .hero-description {
-            font-size: 1em;
-        }
-        #rotating-text {
-            min-height: 140px !important;
-        }
-        .wave-container {
-            gap: 10px !important;
-        }
-        .hero-btn {
-            padding: 12px 25px;
-            font-size: 1.1em;
-        }
-        .hero-btn-secondary {
-            margin-top: 20px;
-            padding: 14px 30px;
-            font-size: 1.1em;
-        }
-        .hero-btn-cta {
-            padding: 16px 45px 16px 35px;
-            font-size: 1.3em;
-            bottom: 15px;
-            right: 15px;
-            min-width: 160px;
-        }
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        .hero-section { min-height: 100vh; }
+        .hero-content { transform: translateY(-20px); padding: 1.5rem; }
+        .hero-main-title { font-size: 2.4em; }
+        .hero-subtitle { font-size: 1.2em; margin-bottom: -15px; }
+        .flavor-description { font-size: 1.2rem; }
+        .hero-description { font-size: 1em; }
+        #rotating-text { min-height: 140px !important; }
+        .wave-container { gap: 10px !important; }
+        .hero-btn { padding: 12px 25px; font-size: 1.1em; }
+        .hero-btn-secondary { margin-top: 20px; padding: 14px 30px; font-size: 1.1em; }
+        .hero-btn-cta { padding: 16px 45px 16px 35px; font-size: 1.3em; bottom: 15px; right: 15px; min-width: 160px; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
     }
 
     @media (max-width: 576px) {
-        .hero-section {
-            min-height: 100vh;
-        }
-        .hero-content {
-            padding: 1.5rem;
-            transform: translateY(-15px);
-        }
-        .hero-main-title {
-            font-size: 2em;
-        }
-        .hero-subtitle {
-            font-size: 1em;
-            margin-bottom: -10px;
-        }
-        .flavor-description {
-            font-size: 1rem;
-        }
-        .hero-description {
-            font-size: 0.9em;
-            margin: 12px 0;
-        }
-        #rotating-text {
-            min-height: 120px !important;
-        }
-        .wave-container {
-            gap: 8px !important;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        .hero-buttons {
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
-        .hero-btn {
-            width: 100%;
-            max-width: 280px;
-            padding: 10px 18px;
-            font-size: 0.9em;
-        }
-        .hero-btn-secondary {
-            margin-top: 15px;
-            padding: 12px 25px;
-            font-size: 1em;
-            max-width: 300px;
-        }
-        .hero-btn-cta {
-            position: static;
-            width: 100%;
-            max-width: 300px;
-            padding: 14px 40px 14px 30px;
-            font-size: 1.2em;
-            margin-top: 12px;
-            min-width: 140px;
-        }
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        .hero-section { min-height: 100vh; }
+        .hero-content { padding: 1.5rem; transform: translateY(-15px); }
+        .hero-main-title { font-size: 2em; }
+        .hero-subtitle { font-size: 1em; margin-bottom: -10px; }
+        .flavor-description { font-size: 1rem; }
+        .hero-description { font-size: 0.9em; margin: 12px 0; }
+        #rotating-text { min-height: 120px !important; }
+        .wave-container { gap: 8px !important; flex-direction: column; align-items: flex-start; }
+        .hero-buttons { flex-direction: column; align-items: center; gap: 12px; }
+        .hero-btn { width: 100%; max-width: 280px; padding: 10px 18px; font-size: 0.9em; }
+        .hero-btn-secondary { margin-top: 15px; padding: 12px 25px; font-size: 1em; max-width: 300px; }
+        .hero-btn-cta { position: static; width: 100%; max-width: 300px; padding: 14px 40px 14px 30px; font-size: 1.2em; margin-top: 12px; min-width: 140px; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
     }
 
     @media (max-width: 480px) {
-        .hero-section {
-            min-height: 100vh;
-            padding: 40px 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .hero-content {
-            padding: 2rem 1rem; /* Reduced side padding to prevent overflow */
-            width: 100%;
-            max-width: 440px;
-            transform: translateY(0);
-            text-align: center;
-            margin: 0 auto;
-            overflow-wrap: break-word; /* Prevent text cutoff */
-        }
-        .hero-subtitle {
-            font-size: 1.2em;
-            margin-bottom: 15px;
-            padding-bottom: 0;
-            text-align: center;
-            font-weight: 600;
-        }
-        .hero-main-title {
-            font-size: 2.2em;
-            line-height: 1.1;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        #rotating-text {
-            min-height: 180px !important;
-            margin-bottom: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        .wave-container {
-            gap: 8px !important;
-            flex-direction: row;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px !important;
-            padding: 0 15px; /* Added padding to prevent cutoff */
-            min-height: 80px;
-            display: flex;
-        }
-        .wave-word {
-            white-space: nowrap;
-            display: inline-block;
-            text-align: center;
-            margin: 3px 5px;
-            font-size: 1.5em;
-            line-height: 1;
-            max-width: 100%;
-            overflow: visible;
-        }
-        .flavor-description {
-            font-size: 1rem;
-            line-height: 1.4;
-            margin-top: 15px;
-            text-align: center;
-            padding: 0 20px; /* Increased padding to prevent cutoff */
-            max-width: 100%;
-            word-wrap: break-word;
-            min-height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .hero-description {
-            font-size: 0.95em;
-            margin: 25px 0;
-            line-height: 1.5;
-            padding: 0 20px; /* Adjusted padding */
-            max-width: 100%;
-            text-align: center;
-        }
-        .hero-buttons {
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin-top: 30px;
-            width: 100%;
-        }
-        .hero-btn {
-            width: 100%;
-            max-width: 320px;
-            padding: 16px 24px;
-            font-size: 1.1em;
-            border-radius: 30px;
-            margin: 0;
-            min-height: 54px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .hero-btn-secondary {
-            margin-top: 15px;
-            padding: 14px 30px;
-            font-size: 1.1em;
-            max-width: 320px;
-        }
-        .hero-btn-cta {
-            position: static;
-            width: 100%;
-            max-width: 320px;
-            padding: 16px 45px 16px 35px;
-            font-size: 1.2em;
-            margin-top: 10px;
-            border-radius: 30px;
-            min-height: 58px;
-            min-width: 140px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        /* Ensure proper text rendering */
-        .wave-word,
-        .flavor-description,
-        .hero-description {
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        /* Better animations for mobile */
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        /* Optimize particle effects */
-        .wave-particle {
-            width: 5px;
-            height: 5px;
-        }
-        /* Touch-friendly interactions */
-        .wave-word:hover {
-            transform: scale(1.05);
-        }
-        .hero-btn:active {
-            transform: scale(0.96);
-        }
-        .hero-btn-cta:active {
-            transform: scale(0.96);
-        }
-        /* Prevent text overflow */
-        * {
-            box-sizing: border-box;
-        }
-        .hero-content * {
-            max-width: 100%;
-            overflow-wrap: break-word;
-        }
+        .hero-section { min-height: 100vh; padding: 40px 0; display: flex; align-items: center; justify-content: center; }
+        .hero-content { padding: 2rem 1rem; width: 100%; max-width: 440px; transform: translateY(0); text-align: center; margin: 0 auto; overflow-wrap: break-word; }
+        .hero-subtitle { font-size: 1.2em; margin-bottom: 15px; padding-bottom: 0; text-align: center; font-weight: 600; }
+        .hero-main-title { font-size: 2.2em; line-height: 1.1; text-align: center; margin-bottom: 20px; }
+        #rotating-text { min-height: 180px !important; margin-bottom: 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .wave-container { gap: 8px !important; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: center; margin-bottom: 20px !important; padding: 0 15px; min-height: 80px; display: flex; }
+        .wave-word { white-space: nowrap; display: inline-block; text-align: center; margin: 3px 5px; font-size: 1.5em; line-height: 1; max-width: 100%; overflow: visible; }
+        .flavor-description { font-size: 1rem; line-height: 1.4; margin-top: 15px; text-align: center; padding: 0 20px; max-width: 100%; word-wrap: break-word; min-height: 50px; display: flex; align-items: center; justify-content: center; }
+        .hero-description { font-size: 0.95em; margin: 25px 0; line-height: 1.5; padding: 0 20px; max-width: 100%; text-align: center; }
+        .hero-buttons { flex-direction: column; align-items: center; gap: 20px; margin-top: 30px; width: 100%; }
+        .hero-btn { width: 100%; max-width: 320px; padding: 16px 24px; font-size: 1.1em; border-radius: 30px; margin: 0; min-height: 54px; display: flex; align-items: center; justify-content: center; }
+        .hero-btn-secondary { margin-top: 15px; padding: 14px 30px; font-size: 1.1em; max-width: 320px; }
+        .hero-btn-cta { position: static; width: 100%; max-width: 320px; padding: 16px 45px 16px 35px; font-size: 1.2em; margin-top: 10px; border-radius: 30px; min-height: 58px; min-width: 140px; display: flex; align-items: center; justify-content: center; }
+        .wave-word, .flavor-description, .hero-description { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        .wave-particle { width: 5px; height: 5px; }
+        .wave-word:hover { transform: scale(1.05); }
+        .hero-btn:active { transform: scale(0.96); }
+        .hero-btn-cta:active { transform: scale(0.96); }
+        * { box-sizing: border-box; }
+        .hero-content * { max-width: 100%; overflow-wrap: break-word; }
     }
 
     @media (max-width: 320px) {
-        .hero-section {
-            min-height: 100vh;
-        }
-        .hero-content {
-            padding: 0.8rem;
-            width: 95%;
-            transform: translateY(-5px);
-        }
-        .hero-main-title {
-            font-size: 1.5em;
-        }
-        .hero-subtitle {
-            font-size: 0.8em;
-            padding-bottom: 5px;
-        }
-        .flavor-description {
-            font-size: 0.8rem;
-            padding: 0 15px;
-        }
-        #rotating-text {
-            min-height: 80px !important;
-        }
-        .wave-container {
-            gap: 4px !important;
-            padding: 0 10px;
-        }
-        .wave-word {
-            font-size: 1.4em;
-            margin-bottom: 4px;
-        }
-        .hero-description {
-            font-size: 0.8em;
-            padding: 0 15px;
-        }
-        .hero-btn {
-            max-width: 220px;
-            padding: 8px 12px;
-            font-size: 0.8em;
-        }
-        .hero-btn-secondary {
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 0.9em;
-            max-width: 220px;
-        }
-        .hero-btn-cta {
-            max-width: 220px;
-            padding: 12px 30px 12px 20px;
-            font-size: 1em;
-            min-width: 120px;
-        }
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        .hero-section { min-height: 100vh; }
+        .hero-content { padding: 0.8rem; width: 95%; transform: translateY(-5px); }
+        .hero-main-title { font-size: 1.5em; }
+        .hero-subtitle { font-size: 0.8em; padding-bottom: 5px; }
+        .flavor-description { font-size: 0.8rem; padding: 0 15px; }
+        #rotating-text { min-height: 80px !important; }
+        .wave-container { gap: 4px !important; padding: 0 10px; }
+        .wave-word { font-size: 1.4em; margin-bottom: 4px; }
+        .hero-description { font-size: 0.8em; padding: 0 15px; }
+        .hero-btn { max-width: 220px; padding: 8px 12px; font-size: 0.8em; }
+        .hero-btn-secondary { margin-top: 10px; padding: 10px 20px; font-size: 0.9em; max-width: 220px; }
+        .hero-btn-cta { max-width: 220px; padding: 12px 30px 12px 20px; font-size: 1em; min-width: 120px; }
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
     }
 
-    /* New Styles for Juice Bottles */
     .juice-bottle {
         position: absolute;
-        z-index: 3; /* Higher than hero-content (z-index: 2) */
-        max-height: 800px; /* Adjusted for desktop to preserve styling */
-        width: auto; /* Maintain aspect ratio */
+        z-index: 3;
+        max-height: 800px;
+        width: auto;
         opacity: 0;
-        animation: dropIn 1s ease-out 1s forwards; /* Delayed to sync with text */
-        pointer-events: none; /* Prevent interaction with images */
+        animation: dropIn 1s ease-out 1s forwards;
+        pointer-events: none;
     }
 
     #bottle-1 {
         top: 20%;
         right: 10%;
-        transform: rotate(5deg); /* Slight tilt for dynamic look */
+        transform: rotate(5deg);
     }
 
     #bottle-2 {
@@ -738,117 +387,56 @@
     }
 
     @keyframes dropIn {
-        0% {
-            opacity: 0;
-            transform: translateY(-100px) rotate(var(--rotate, 0deg));
-        }
-        60% {
-            opacity: 1;
-            transform: translateY(20px) rotate(var(--rotate, 0deg));
-        }
-        80% {
-            transform: translateY(-10px) rotate(var(--rotate, 0deg));
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0) rotate(var(--rotate, 0deg));
-        }
+        0% { opacity: 0; transform: translateY(-100px) rotate(var(--rotate, 0deg)); }
+        60% { opacity: 1; transform: translateY(20px) rotate(var(--rotate, 0deg)); }
+        80% { transform: translateY(-10px) rotate(var(--rotate, 0deg)); }
+        100% { opacity: 1; transform: translateY(0) rotate(var(--rotate, 0deg)); }
     }
 
-    /* Optional floating effect after drop */
     .juice-bottle.float {
         animation: dropIn 1s ease-out 1s forwards, float 3s ease-in-out infinite 2s;
     }
 
     @keyframes float {
-        0%, 100% {
-            transform: translateY(0) rotate(var(--rotate, 0deg));
-        }
-        50% {
-            transform: translateY(-15px) rotate(var(--rotate, 0deg));
-        }
+        0%, 100% { transform: translateY(0) rotate(var(--rotate, 0deg)); }
+        50% { transform: translateY(-15px) rotate(var(--rotate, 0deg)); }
     }
 
-    /* Responsive adjustments for bottles */
     @media (max-width: 992px) {
-        .juice-bottle {
-            max-height: 450px;
-        }
-        #bottle-1 {
-            top: 20%;
-            right: 8%;
-        }
-        #bottle-2 {
-            top: 30%;
-            right: 3%;
-        }
+        .juice-bottle { max-height: 450px; }
+        #bottle-1 { top: 20%; right: 8%; }
+        #bottle-2 { top: 30%; right: 3%; }
     }
 
     @media (max-width: 768px) {
-        .juice-bottle {
-            max-height: 350px; /* Larger for small screens */
-        }
-        #bottle-1 {
-            top: 25%; /* Pushed down */
-            right: 5%;
-        }
-        #bottle-2 {
-            top: 35%; /* Pushed down */
-            right: 2%;
-        }
+        .juice-bottle { max-height: 350px; }
+        #bottle-1 { top: 25%; right: 5%; }
+        #bottle-2 { top: 35%; right: 2%; }
     }
 
     @media (max-width: 576px) {
-        .juice-bottle {
-            max-height: 300px; /* Larger for small screens */
-        }
-        #bottle-1 {
-            top: 30%; /* Pushed down further */
-            right: 10%;
-        }
-        #bottle-2 {
-            top: 40%; /* Pushed down further */
-            right: 5%;
-        }
+        .juice-bottle { max-height: 300px; }
+        #bottle-1 { top: 30%; right: 10%; }
+        #bottle-2 { top: 40%; right: 5%; }
     }
 
     @media (max-width: 480px) {
-        .juice-bottle {
-            max-height: 350px; /* Larger for small screens */
-
-        }
-        #bottle-1 {
-            top: 35%; /* Pushed down further */
-            right: -15%;
-        }
-        #bottle-2 {
-            top: 45%; /* Pushed down further */
-            right: -15%;
-        }
+        .juice-bottle { max-height: 350px; }
+        #bottle-1 { top: 35%; right: -15%; }
+        #bottle-2 { top: 45%; right: -15%; }
     }
 
     @media (max-width: 320px) {
-        .juice-bottle {
-            max-height: 200px; /* Slightly larger for very small screens */
-        }
-        #bottle-1 {
-            top: 40%; /* Pushed down further */
-            right: 10%;
-        }
-        #bottle-2 {
-            top: 50%; /* Pushed down further */
-            right: 5%;
-        }
+        .juice-bottle { max-height: 200px; }
+        #bottle-1 { top: 40%; right: 10%; }
+        #bottle-2 { top: 50%; right: 5%; }
     }
 
-
-
-/* Footer Specific Styles - High Specificity */
     body #page-footer {
         background: linear-gradient(180deg, #191a19 0%, #373a39 100%) !important;
         color: #fff !important;
         position: relative !important;
-        padding: 30px 0 15px !important; /* Reduced padding */
+        padding: 30px 0 15px !important;
         overflow: hidden !important;
         font-family: 'Arial', sans-serif !important;
         margin-top: 0 !important;
@@ -878,45 +466,44 @@
     body #page-footer .footer-content {
         display: grid !important;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
-        gap: 20px !important; /* Reduced gap */
-        margin-bottom: 20px !important; /* Reduced margin */
+        gap: 20px !important;
+        margin-bottom: 20px !important;
     }
 
     body #page-footer .footer-section {
         display: flex !important;
         flex-direction: column !important;
-        gap: 10px !important; /* Reduced gap */
+        gap: 10px !important;
     }
 
     body #page-footer .footer-section h4 {
-        font-size: 1.1rem !important; /* Slightly smaller */
+        font-size: 1.1rem !important;
         font-weight: 600 !important;
         color: #64ffd6 !important;
-        margin-bottom: 8px !important; /* Reduced margin */
+        margin-bottom: 8px !important;
         text-transform: uppercase !important;
         letter-spacing: 1px !important;
     }
 
-    /* Horizontal quick links */
     body #page-footer .footer-section.links ul {
         list-style: none !important;
         padding: 0 !important;
         margin: 0 !important;
         display: flex !important;
-        flex-direction: row !important; /* Changed to row */
+        flex-direction: row !important;
         flex-wrap: wrap !important;
-        gap: 15px !important; /* Horizontal gap between links */
+        gap: 15px !important;
     }
 
     body #page-footer .footer-section.links ul li {
         margin-bottom: 0 !important;
-        white-space: nowrap !important; /* Prevent line breaks */
+        white-space: nowrap !important;
     }
 
     body #page-footer .footer-section ul li a {
         color: #d1d1d1 !important;
         text-decoration: none !important;
-        font-size: 0.9rem !important; /* Slightly smaller */
+        font-size: 0.9rem !important;
         transition: color 0.3s ease !important;
     }
 
@@ -927,20 +514,20 @@
 
     body #page-footer .social-icons {
         display: flex !important;
-        gap: 12px !important; /* Reduced gap */
+        gap: 12px !important;
     }
 
     body #page-footer .social-icon {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        width: 36px !important; /* Slightly smaller */
-        height: 36px !important; /* Slightly smaller */
+        width: 36px !important;
+        height: 36px !important;
         background: rgba(255, 255, 255, 0.1) !important;
         border-radius: 50% !important;
         color: #fff !important;
         text-decoration: none !important;
-        font-size: 1.1rem !important; /* Slightly smaller */
+        font-size: 1.1rem !important;
         transition: all 0.3s ease !important;
     }
 
@@ -954,8 +541,8 @@
         background: #64ffd6 !important;
         color: #1a3c34 !important;
         border: none !important;
-        padding: 8px 16px !important; /* Reduced padding */
-        font-size: 0.9rem !important; /* Slightly smaller */
+        padding: 8px 16px !important;
+        font-size: 0.9rem !important;
         font-weight: 600 !important;
         border-radius: 25px !important;
         cursor: pointer !important;
@@ -971,8 +558,8 @@
     body #page-footer .contact-form {
         display: none !important;
         flex-direction: column !important;
-        gap: 8px !important; /* Reduced gap */
-        margin-top: 8px !important; /* Reduced margin */
+        gap: 8px !important;
+        margin-top: 8px !important;
         width: 100% !important;
     }
 
@@ -984,11 +571,11 @@
         background: rgba(255, 255, 255, 0.1) !important;
         border: 1px solid rgba(255, 255, 255, 0.2) !important;
         border-radius: 8px !important;
-        padding: 8px !important; /* Reduced padding */
+        padding: 8px !important;
         color: #fff !important;
-        font-size: 0.9rem !important; /* Slightly smaller */
+        font-size: 0.9rem !important;
         resize: vertical !important;
-        min-height: 80px !important; /* Reduced height */
+        min-height: 80px !important;
         outline: none !important;
         transition: border 0.3s ease !important;
         width: 100% !important;
@@ -1002,8 +589,8 @@
         background: #64ffd6 !important;
         color: #1a3c34 !important;
         border: none !important;
-        padding: 8px !important; /* Reduced padding */
-        font-size: 0.9rem !important; /* Slightly smaller */
+        padding: 8px !important;
+        font-size: 0.9rem !important;
         font-weight: 600 !important;
         border-radius: 25px !important;
         cursor: pointer !important;
@@ -1017,92 +604,56 @@
 
     body #page-footer .footer-bottom {
         text-align: center !important;
-        padding-top: 15px !important; /* Reduced padding */
+        padding-top: 15px !important;
         border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
     }
 
     body #page-footer .footer-bottom p {
-        font-size: 0.8rem !important; /* Slightly smaller */
+        font-size: 0.8rem !important;
         color: #b0b0b0 !important;
-        margin: 8px 0 0 !important; /* Reduced margin */
+        margin: 8px 0 0 !important;
     }
 
-    /* Responsive Design */
     @media (max-width: 768px) {
-        body #page-footer .footer-content {
-            grid-template-columns: 1fr !important;
-            text-align: center !important;
-            gap: 20px !important;
-        }
-
-        body #page-footer .footer-section {
-            align-items: center !important;
-        }
-
-        body #page-footer .footer-section.links ul {
-            justify-content: center !important;
-        }
-
-        body #page-footer .social-icons {
-            justify-content: center !important;
-        }
-
-        body #page-footer .contact-toggle {
-            margin: 0 auto !important;
-        }
+        body #page-footer .footer-content { grid-template-columns: 1fr !important; text-align: center !important; gap: 20px !important; }
+        body #page-footer .footer-section { align-items: center !important; }
+        body #page-footer .footer-section.links ul { justify-content: center !important; }
+        body #page-footer .social-icons { justify-content: center !important; }
+        body #page-footer .contact-toggle { margin: 0 auto !important; }
     }
 
     @media (max-width: 480px) {
-        body #page-footer {
-            padding: 25px 0 15px !important; /* Further reduced padding */
-        }
-        
-        body #page-footer .footer-content {
-            gap: 20px !important;
-        }
-        
-        body #page-footer .footer-section h4 {
-            font-size: 1rem !important;
-        }
-
-        /* Stack links vertically on very small screens */
-        body #page-footer .footer-section.links ul {
-            flex-direction: column !important;
-            gap: 8px !important;
-            align-items: center !important;
-        }
+        body #page-footer { padding: 25px 0 15px !important; }
+        body #page-footer .footer-content { gap: 20px !important; }
+        body #page-footer .footer-section h4 { font-size: 1rem !important; }
+        body #page-footer .footer-section.links ul { flex-direction: column !important; gap: 8px !important; align-items: center !important; }
     }
-
-
-
-
-
-
 </style>
 
-<!-- Preload images for performance -->
-<link rel="preload" href="{{ asset('images/ginger_lemon.jpg') }}" as="image">
-<link rel="preload" href="{{ asset('images/ginger_tangerine1.jpg') }}" as="image">
-<link rel="preload" href="{{ asset('images/juice1.png') }}" as="image">
-<link rel="preload" href="{{ asset('images/juice1.png') }}" as="image">
+<!-- Preload images for performance (optional, using static as fallback) -->
+@php
+    $lemonBg = $heroImages->where('title', 'Lemon Ginger Background')->first();
+    $tangerineBg = $heroImages->where('title', 'Tangerine Ginger Background')->first();
+    $lemonBottle = $heroImages->where('title', 'Lemon Ginger Bottle')->first();
+    $tangerineBottle = $heroImages->where('title', 'Tangerine Ginger Bottle')->first();
+@endphp
+<link rel="preload" href="{{ $lemonBg && $lemonBg->image_path ? Storage::url($lemonBg->image_path) : asset('images/ginger_lemon.jpg') }}" as="image">
+<link rel="preload" href="{{ $tangerineBg && $tangerineBg->image_path ? Storage::url($tangerineBg->image_path) : asset('images/ginger_tangerine1.jpg') }}" as="image">
+<link rel="preload" href="{{ $lemonBottle && $lemonBottle->image_path ? Storage::url($lemonBottle->image_path) : asset('images/juice1.png') }}" as="image">
+<link rel="preload" href="{{ $tangerineBottle && $tangerineBottle->image_path ? Storage::url($tangerineBottle->image_path) : asset('images/tangerine_and_ginger_1-removebg-preview.png') }}" as="image">
 
 <div class="hero-section">
-    <div class="hero-background" id="bg-1" style="background-image: url('{{ asset('images/ginger_lemon.jpg') }}');"></div>
-    <div class="hero-background" id="bg-2" style="background-image: url('{{ asset('images/ginger_tangerine1.jpg') }}');"></div>
+    <div class="hero-background" id="bg-1" style="background-image: url('{{ $lemonBg && $lemonBg->image_path ? Storage::url($lemonBg->image_path) : asset('images/ginger_lemon.jpg') }}');"></div>
+    <div class="hero-background" id="bg-2" style="background-image: url('{{ $tangerineBg && $tangerineBg->image_path ? Storage::url($tangerineBg->image_path) : asset('images/ginger_tangerine1.jpg') }}');"></div>
 
-    <!-- Juice Bottle Images -->
-    <img src="{{ asset('images/juice1.png') }}" alt="Lemon Ginger Juice" class="juice-bottle float" id="bottle-1" style="--rotate: 5deg;">
-    <img src="{{ asset('images/juice1.png') }}" alt="Tangerine Ginger Juice" class="juice-bottle float" id="bottle-2" style="--rotate: -5deg;">
+    <img src="{{ $lemonBottle && $lemonBottle->image_path ? Storage::url($lemonBottle->image_path) : asset('images/juice1.png') }}" alt="Lemon Ginger Juice" class="juice-bottle float" id="bottle-1" style="--rotate: 5deg;">
+    <img src="{{ $tangerineBottle && $tangerineBottle->image_path ? Storage::url($tangerineBottle->image_path) : asset('images/tangerine_and_ginger_1-removebg-preview.png') }}" alt="Tangerine Ginger Juice" class="juice-bottle float" id="bottle-2" style="--rotate: -5deg;">
 
     <div class="hero-content">
         <h2 class="hero-subtitle">Explore Our Fresh Juices</h2>
         <h1 id="rotating-text" class="hero-main-title">
-            <div class="wave-container" id="wave-container">
-                <!-- Words will be dynamically inserted here -->
-            </div>
-            <div class="flavor-description" id="flavor-description">
-                <!-- Flavor description will be dynamically inserted here -->
-            </div>
+            <div class="wave-container" id="wave-container"></div>
+            <div class="flavor-description" id="flavor-description"></div>
         </h1>
         <p class="hero-description">
             "Available in 420ml bottles – perfect for retail sales! We also take custom orders for events and parties."
@@ -1115,21 +666,16 @@
             </a>
         </div>
     </div>
-    <a href="{{ url('/order') }}" class="hero-btn-cta">
-        Order
-    </a>
+    <a href="{{ url('/order') }}" class="hero-btn-cta">Order</a>
 </div>
 
-
-<!-- Footer HTML with specific ID -->
 <footer id="page-footer">
     <div class="footer-glow"></div>
     <div class="footer-container">
         <div class="footer-content">
-            <div class="footer-section links"> <!-- Added links class -->
+            <div class="footer-section links">
                 <h4>Quick Links</h4>
                 <ul>
-                   
                     <li><a href="/about">About</a></li>
                     <li><a href="/juices">Juices</a></li>
                     <li><a href="/tips">Health Tips</a></li>
@@ -1159,11 +705,6 @@
     </div>
 </footer>
 
-
-
-
-
-
 <script>
     const phrases = [
         { text: "Lemon Ginger Cane", flavor: "Sugarcane Juice Infused with Lemon & Ginger" },
@@ -1176,8 +717,8 @@
     ];
 
     const bottles = [
-        document.getElementById('bottle-1'), // juice1.png for Lemon Ginger Cane
-        document.getElementById('bottle-2')  // juice2.png for Tangerine Ginger Cane
+        document.getElementById('bottle-1'),
+        document.getElementById('bottle-2')
     ];
 
     let index = 0;
@@ -1192,12 +733,7 @@
             particle.style.left = Math.random() * rect.width + 'px';
             particle.style.top = Math.random() * rect.height + 'px';
             container.appendChild(particle);
-
-            setTimeout(() => {
-                if (particle.parentNode) {
-                    particle.remove();
-                }
-            }, 2000);
+            setTimeout(() => { if (particle.parentNode) particle.remove(); }, 2000);
         }
     }
 
@@ -1208,7 +744,6 @@
                 word.style.animation = `popOut 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards`;
             }, i * 50);
         });
-
         flavorContainer.style.animation = 'slideOutRight 0.5s ease-out forwards';
     }
 
@@ -1231,7 +766,6 @@
     function createWaveText(text) {
         container.innerHTML = '';
         const words = text.split(' ');
-
         words.forEach((word, i) => {
             const wordElement = document.createElement('div');
             wordElement.className = 'wave-word';
@@ -1240,10 +774,7 @@
             wordElement.style.animationDelay = `${i * 0.15}s`;
             container.appendChild(wordElement);
         });
-
-        setTimeout(() => {
-            createWaveParticles();
-        }, 500);
+        setTimeout(() => { createWaveParticles(); }, 500);
     }
 
     function updateFlavorDescription(flavor) {
@@ -1267,17 +798,12 @@
         }, 600);
     }
 
-    // Initialize
     createWaveText(phrases[index].text);
     updateFlavorDescription(phrases[index].flavor);
     backgrounds[index].classList.add('active');
     animateBottles();
     setInterval(changeContent, 8000);
-    setInterval(() => {
-        if (Math.random() < 0.5) {
-            createWaveParticles();
-        }
-    }, 2500);
+    setInterval(() => { if (Math.random() < 0.5) createWaveParticles(); }, 2500);
 </script>
 
 @endsection

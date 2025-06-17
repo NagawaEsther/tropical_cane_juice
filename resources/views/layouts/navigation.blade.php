@@ -23,6 +23,14 @@
                         {{ __('About Sections') }}
                     </x-nav-link>
     </x-nav-link>
+    <x-nav-link :href="route('admin.hero_images.index')" :active="request()->routeIs('admin.hero_images.*')">
+        {{ __('Hero Section') }}
+    </x-nav-link>
+
+     <x-nav-link :href="route('admin.tips_images.index')" :active="request()->routeIs('admin.tips_images.*')">
+        {{ __('Tips Section') }}
+    </x-nav-link>
+
     
                 </div>
             </div>
@@ -87,6 +95,14 @@
             <x-nav-link :href="route('admin.about_sections.index')" :active="request()->routeIs('admin.about_sections.*')">
                         {{ __('About Sections') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('admin.hero_images.index')" :active="request()->routeIs('admin.hero_images.*')">
+        {{ __('Hero Section') }}
+    </x-nav-link>
+
+    <x-nav-link :href="route('admin.tips_images.index')" :active="request()->routeIs('admin.tips_images.*')">
+        {{ __('Tips Section') }}
+    </x-nav-link>
 
         </div>
 
