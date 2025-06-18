@@ -2,18 +2,21 @@
 
 @section('content')
 <style>
-    body {
-        background: linear-gradient(to right, #fff8e1, #fff3e0); 
+    html, body {
+        background: linear-gradient(to right, #fff8e1, #fff3e0) !important;
         color: #333;
         font-family: 'Segoe UI', sans-serif;
-        padding: 0;
-        margin: 0;
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100%;
+        overflow-x: hidden;
     }
 
     .about-container {
-        max-width: 1300px;
-        margin: 0 auto;
+        width: 100%;
+        margin: 0 !important;
         padding: 60px 20px;
+        box-sizing: border-box;
     }
 
     .about-title {
@@ -34,7 +37,7 @@
         margin-bottom: 40px;
         line-height: 1.6;
         color: #555;
-        padding: 0 10%;
+        padding: 0 5%;
     }
 
     .flavors-section {
@@ -43,6 +46,7 @@
         justify-content: center;
         gap: 40px;
         margin-top: 40px;
+        padding: 0 20px;
     }
 
     .flavor-card {
@@ -76,10 +80,11 @@
     .mission-vision {
         background: #fefefe;
         padding: 50px 40px;
-        margin-top: 80px;
-        border-radius: 20px;
+        margin: 80px 0;
+        border-radius: 0;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
         text-align: center;
+        width: 100%;
     }
 
     .mission-vision h3 {
@@ -94,35 +99,49 @@
         color: #444;
     }
 
-    .row {
-        margin-top: 80px;
+    .images-section {
         display: flex;
-        justify-content: space-around;
         flex-wrap: wrap;
+        justify-content: center;
         gap: 40px;
+        margin-top: 40px;
+        padding: 0 20px;
     }
 
-    .row .image-container {
-        width: 100%;
-        max-width: 400px; /* Fixed max-width for both images */
-        height: 300px; /* Fixed height for uniform size */
+    .image-card {
+        text-align: center;
+        width: 300px;
+    }
+
+    .image-card .image-container {
+        width: 300px;
+        height: 220px;
         overflow: hidden;
-        border-radius: 20px;
+        border-radius: 15px;
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+        flex-shrink: 0;
+        margin-bottom: 15px;
     }
 
-    .row .image-container img {
+    .image-card .image-container img {
         width: 100%;
         height: 100%;
-        object-fit: cover; /* Ensures images fill container uniformly */
+        object-fit: cover;
+    }
+
+    .image-card h4 {
+        color: #009900;
+        margin-bottom: 10px;
+        font-size: 1.4rem;
     }
 
     .why-us {
         background: linear-gradient(to right, #e0f7fa, #e8f5e9);
-        padding: 60px 30px;
-        margin-top: 80px;
-        border-radius: 20px;
+        padding: 60px 20px;
+        margin: 0;
+        border-radius: 0;
         text-align: center;
+        width: 100%;
     }
 
     .why-us h3 {
@@ -155,11 +174,12 @@
     }
 
     .dynamic-section {
-        margin: 40px 0;
+        margin: 40px 20px;
         padding: 20px;
         background: #fff;
         border-radius: 15px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        width: calc(100% - 40px);
     }
 
     .dynamic-section h3 {
@@ -186,29 +206,296 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
-    @media(max-width: 768px) {
+    #page-footer {
+        background: linear-gradient(180deg, #1a3c34 0%, #0f2a22 100%) !important;
+        color: #fff !important;
+        position: relative !important;
+        padding: 60px 0 20px !important;
+        overflow: hidden !important;
+        font-family: 'Arial', sans-serif !important;
+        margin: 0 !important;
+        border-top: none !important;
+        width: 100vw !important;
+        margin-left: calc(-50vw + 50%) !important;
+    }
+
+    #page-footer .footer-glow {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: radial-gradient(circle at 50% 0%, rgba(100, 255, 218, 0.2) 0%, transparent 70%) !important;
+        z-index: 0 !important;
+        opacity: 0.5 !important;
+        pointer-events: none !important;
+    }
+
+    #page-footer .footer-container {
+        max-width: 1200px !important;
+        margin: 0 auto !important;
+        padding: 0 20px !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+
+    #page-footer .footer-content {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+        gap: 40px !important;
+        margin-bottom: 40px !important;
+    }
+
+    #page-footer .footer-section {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+
+    #page-footer .footer-section h4 {
+        font-size: 1.2rem !important;
+        font-weight: 600 !important;
+        color: #64ffd6 !important;
+        margin-bottom: 10px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+    }
+
+    #page-footer .footer-section.links ul {
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 15px !important;
+    }
+
+    #page-footer .footer-section.links ul li {
+        margin-bottom: 0 !important;
+        white-space: nowrap !important;
+    }
+
+    #page-footer .footer-section ul li a {
+        color: #d1d1d1 !important;
+        text-decoration: none !important;
+        font-size: 0.95rem !important;
+        transition: color 0.3s ease !important;
+    }
+
+    #page-footer .footer-section ul li a:hover {
+        color: #64ffd6 !important;
+        text-decoration: none !important;
+    }
+
+    #page-footer .social-icons {
+        display: flex !important;
+        gap: 15px !important;
+    }
+
+    #page-footer .social-icon {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 40px !important;
+        height: 40px !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 50% !important;
+        color: #fff !important;
+        text-decoration: none !important;
+        font-size: 1.2rem !important;
+        transition: background 0.3s ease, transform 0.3s ease !important;
+    }
+
+    #page-footer .social-icon:hover {
+        background: #64ffd6 !important;
+        color: #1a3c34 !important;
+        transform: scale(1.1) !important;
+    }
+
+    #page-footer .contact-toggle {
+        background: #64ffd6 !important;
+        color: #1a3c34 !important;
+        border: none !important;
+        padding: 10px 20px !important;
+        font-size: 0.95rem !important;
+        font-weight: 600 !important;
+        border-radius: 25px !important;
+        cursor: pointer !important;
+        transition: background 0.3s ease, transform 0.3s ease !important;
+        width: fit-content !important;
+    }
+
+    #page-footer .contact-toggle:hover {
+        background: #4ad9b8 !important;
+        transform: translateY(-2px) !important;
+    }
+
+    #page-footer .contact-form {
+        display: none !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        margin-top: 10px !important;
+        width: 100% !important;
+    }
+
+    #page-footer .contact-form.active {
+        display: flex !important;
+    }
+
+    #page-footer .contact-form textarea {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        border-radius: 8px !important;
+        padding: 10px !important;
+        color: #fff !important;
+        font-size: 0.95rem !important;
+        resize: vertical !important;
+        min-height: 100px !important;
+        outline: none !important;
+        transition: border 0.3s ease !important;
+        width: 100% !important;
+    }
+
+    #page-footer .contact-form textarea:focus {
+        border-color: #64ffd6 !important;
+    }
+
+    #page-footer .contact-form button {
+        background: #64ffd6 !important;
+        color: #1a3c34 !important;
+        border: none !important;
+        padding: 10px !important;
+        font-size: 0.95rem !important;
+        font-weight: 600 !important;
+        border-radius: 25px !important;
+        cursor: pointer !important;
+        transition: background 0.3s ease, transform 0.3s ease !important;
+    }
+
+    #page-footer .contact-form button:hover {
+        background: #4ad9b8 !important;
+        transform: translateY(-2px) !important;
+    }
+
+    #page-footer .footer-bottom {
+        text-align: center !important;
+        padding-top: 20px !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+        margin-top: -20px !important;
+    }
+
+    #page-footer .footer-bottom p {
+        font-size: 0.85rem !important;
+        color: #b0b0b0 !important;
+        margin: 10px 0 0 !important;
+    }
+
+    @media (max-width: 768px) {
         .about-title {
             font-size: 2.5rem;
         }
 
         .about-text {
-            padding: 0;
+            padding: 0 3%;
         }
 
-        .row {
+        .images-section {
             flex-direction: column;
+            margin: 40px 0;
+            align-items: center;
+        }
+
+        .image-card {
+            width: 90%;
+        }
+
+        .image-card .image-container {
+            width: 300px;
+            height: 220px;
+        }
+
+        .mission-vision, .dynamic-section {
+            margin: 40px 0;
+            padding: 30px 20px;
+        }
+
+        .why-us {
+            padding: 40px 20px;
+        }
+
+        #page-footer .footer-content {
+            grid-template-columns: 1fr !important;
+            text-align: center !important;
+            gap: 20px !important;
+        }
+
+        #page-footer .footer-section {
+            align-items: center !important;
+        }
+
+        #page-footer .footer-section.links ul {
+            justify-content: center !important;
+        }
+
+        #page-footer .social-icons {
+            justify-content: center !important;
+        }
+
+        #page-footer .contact-toggle {
+            margin: 0 auto !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .about-title {
+            font-size: 2rem;
+        }
+
+        .about-text {
+            font-size: 1rem;
+        }
+
+        .flavor-card {
+            width: 100%;
+            padding: 15px;
+        }
+
+        .mission-vision h3, .why-us h3, .dynamic-section h3 {
+            font-size: 1.5rem;
         }
 
         .flavor-card {
             width: 90%;
         }
 
-        .row .image-container {
-            max-width: 90%;
-            height: 250px; /* Slightly smaller height for mobile */
+        .image-card .image-container {
+            width: 280px;
+            height: 200px;
+        }
+
+        #page-footer {
+            padding: 25px 0 15px !important;
+        }
+
+        #page-footer .footer-content {
+            gap: 20px !important;
+        }
+
+        #page-footer .footer-section h4 {
+            font-size: 1rem !important;
+        }
+
+        #page-footer .footer-section.links ul {
+            flex-direction: column !important;
+            gap: 8px !important;
+            align-items: center !important;
         }
     }
 </style>
+
+<!-- Include Font Awesome for social icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <div class="about-container">
     <h2 class="about-title">About <span class="highlight">Tropical Cane</span> Juice</h2>
@@ -217,7 +504,6 @@
         Every sip combines nature's sweetness with health-boosting flavors like Lemon & Ginger or Tangerine & Ginger — crafted to energize and nourish.
     </p>
 
-    {{-- Dynamic Sections from Backend (Excluding Specific Image Sections) --}}
     @if($sections->isNotEmpty())
         @foreach($sections as $section)
             @if(!in_array($section->title, ['Lemon & Ginger', 'Tangerine & Ginger', 'Our Team', 'Juice Process', 'Our Mission', 'Our Vision', 'Why Choose Tropical Cane?']))
@@ -257,7 +543,7 @@
             <p>{{ $tangerineSection && $tangerineSection->description ? $tangerineSection->description : 'Sweet, citrusy, and crafted to uplift your energy – naturally.' }}</p>
         </div>
     </div>
-
+    <br>
     <div class="mission-vision">
         @php
             $missionSection = $sections->where('title', 'Our Mission')->first();
@@ -272,29 +558,31 @@
         <h3>Our Vision</h3>
         <p>{{ $visionSection && $visionSection->description ? $visionSection->description : 'To lead the East African beverage market by promoting wellness and joy, one refreshing bottle at a time.' }}</p>
     </div>
-<br>
-    <div class="row">
-        <div class="col-md-5">
+    <br>
+    <div class="flavors-section">
+        <div class="flavor-card">
             @php
                 $teamSection = $sections->where('title', 'Our Team')->first();
             @endphp
             <div class="image-container">
                 <img src="{{ $teamSection && $teamSection->image_path ? Storage::url($teamSection->image_path) : asset('images/tc.PNG') }}" alt="Our Team">
             </div>
+            <h4>Our Team</h4>
+            <p>{{ $teamSection && $teamSection->description ? $teamSection->description : 'Our team during production time.' }}</p>
         </div>
         
-        <div class="col-md-5">
+        <div class="flavor-card">
             @php
                 $processSection = $sections->where('title', 'Juice Process')->first();
             @endphp
-            <div class="image-container">
+            <div class="flavors-section">
                 <img src="{{ $processSection && $processSection->image_path ? Storage::url($processSection->image_path) : asset('images/juice_process.jpg') }}" alt="Juice Process">
             </div>
+            <h4>Juice Process</h4>
+             <p>{{ $processSection && $processSection->description ? $processSection->description : 'The production process in progress' }}</p>
         </div>
     </div>
-
     <br>
-
     <div class="why-us">
         @php
             $whyUsSection = $sections->where('title', 'Why Choose Tropical Cane?')->first();
@@ -315,8 +603,64 @@
             </ul>
         @endif
     </div>
+    <br>
 </div>
 
-@include('frontend.footer')
+<footer id="page-footer">
+    <div class="footer-glow"></div>
+    <div class="footer-container">
+        <div class="footer-content">
+            <div class="footer-section links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/juices">Juices</a></li>
+                    <li><a href="/tips">Health Tips</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <button class="contact-toggle" onclick="toggleContactForm()">Message Us</button>
+                <div class="contact-form" id="contactForm">
+                    <textarea placeholder="Your message..." id="contactMessage"></textarea>
+                    <button onclick="sendToWhatsApp()">Send</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Tropical Cane Juice. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function toggleContactForm() {
+        const form = document.getElementById('contactForm');
+        form.classList.toggle('active');
+    }
+
+    function sendToWhatsApp() {
+        const message = document.getElementById('contactMessage').value.trim();
+        if (!message) {
+            alert('Please enter a message before submitting.');
+            return;
+        }
+        const whatsappNumber = '+256776644143';
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        window.open(whatsappUrl, '_blank');
+        document.getElementById('contactMessage').value = '';
+        document.getElementById('contactForm').classList.remove('active');
+    }
+</script>
 
 @endsection

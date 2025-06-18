@@ -11,6 +11,7 @@
             {{ session('success') }}
         </div>
     @endif
+    
 
     <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
         <a href="{{ route('juices.create') }}" 

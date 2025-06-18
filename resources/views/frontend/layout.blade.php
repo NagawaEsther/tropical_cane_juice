@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tropical Cane Juice</title>
+  <link rel="icon" type="image/jpeg" href="{{ asset('images/TC_LOGO.jpg') }}?v={{ time() }}" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css?v=5" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
@@ -79,7 +81,7 @@
       text-transform: uppercase !important;
     }
     .navbar-toggler {
-      display: none !important; /* Hidden by default */
+      display: none !important;
       background: transparent !important;
       border: none !important;
       padding: 4px 8px !important;
@@ -136,6 +138,7 @@
       border-radius: 8px !important;
       text-decoration: none !important;
       transition: background 0.3s !important;
+      cursor: pointer !important;
     }
     .cta-button:hover {
       background: #33D474 !important;
@@ -146,7 +149,6 @@
       padding: 2rem !important;
     }
 
-    /* Mobile Responsive Styles */
     @media (max-width: 768px) {
       .navbar {
         height: 100px !important;
@@ -173,7 +175,7 @@
         font-size: 0.7rem !important;
       }
       .navbar-toggler {
-        display: block !important; /* Show only on mobile */
+        display: block !important;
       }
       .navbar-collapse {
         display: none !important;
@@ -230,7 +232,7 @@
           <li class="nav-item"><a class="nav-link {{ request()->is('tips') ? 'active' : '' }}" href="{{ url('/tips') }}">Healthy Tips</a></li>
           <li class="nav-item"><a class="nav-link {{ request()->is('contact') ? 'active' : '' }}" href="{{ url('/contact') }}">Contact Us</a></li>
         </ul>
-        <a href="{{ url('/contact') }}" class="cta-button ms-2">Get Fresh Juice</a>
+        <a class="cta-button ms-2" onclick="getFreshJuiceToWhatsApp()">Get Fresh Juice</a>
       </div>
     </div>
   </nav>
@@ -251,14 +253,44 @@
 
     function toggleContactForm() {
       const form = document.getElementById('contactForm');
-      form.classList.toggle('active');
+      if (form) {
+        form.classList.toggle('active');
+      } else {
+        console.error('Contact form not found');
+      }
     }
 
-    function sendToWhatsApp() {
-      const message = document.getElementById('contactMessage').value.trim();
-      if (message) {
-        const url = `https://wa.me/1234567890?text=${encodeURIComponent(message)}`;
-        window.open(url, '_blank');
+    function sendToTropicalCaneWhatsApp() {
+      const message = document.getElementById('contactMessage')?.value.trim();
+      if (!message) {
+        alert('Please enter a message before submitting.');
+        return;
+      }
+      const whatsappNumber = '+256776644143';
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+      console.log('Opening WhatsApp URL:', whatsappUrl);
+      try {
+        window.open(whatsappUrl, '_blank');
+      } catch (error) {
+        console.error('Error opening WhatsApp URL:', error);
+        alert('Failed to open WhatsApp. Please try again.');
+      }
+      document.getElementById('contactMessage').value = '';
+      document.getElementById('contactForm')?.classList.remove('active');
+    }
+
+    function getFreshJuiceToWhatsApp() {
+      const defaultMessage = "Hello, I'm interested in ordering fresh juice!";
+      const whatsappNumber = '+256776644143';
+      const encodedMessage = encodeURIComponent(defaultMessage);
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+      console.log('Opening Get Fresh Juice WhatsApp URL:', whatsappUrl);
+      try {
+        window.open(whatsappUrl, '_blank');
+      } catch (error) {
+        console.error('Error opening WhatsApp URL for Get Fresh Juice:', error);
+        alert('Failed to open WhatsApp. Please try again.');
       }
     }
   </script>

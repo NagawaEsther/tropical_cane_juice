@@ -433,10 +433,10 @@
     }
 
     body #page-footer {
-        background: linear-gradient(180deg, #191a19 0%, #373a39 100%) !important;
+        background: linear-gradient(180deg, #1a3c34 0%, #0f2a22 100%) !important;
         color: #fff !important;
         position: relative !important;
-        padding: 30px 0 15px !important;
+        padding: 60px 0 20px !important;
         overflow: hidden !important;
         font-family: 'Arial', sans-serif !important;
         margin-top: 0 !important;
@@ -466,21 +466,21 @@
     body #page-footer .footer-content {
         display: grid !important;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
-        gap: 20px !important;
-        margin-bottom: 20px !important;
+        gap: 40px !important;
+        margin-bottom: 40px !important;
     }
 
     body #page-footer .footer-section {
         display: flex !important;
         flex-direction: column !important;
-        gap: 10px !important;
+        gap: 15px !important;
     }
 
     body #page-footer .footer-section h4 {
-        font-size: 1.1rem !important;
+        font-size: 1.2rem !important;
         font-weight: 600 !important;
         color: #64ffd6 !important;
-        margin-bottom: 8px !important;
+        margin-bottom: 10px !important;
         text-transform: uppercase !important;
         letter-spacing: 1px !important;
     }
@@ -503,7 +503,7 @@
     body #page-footer .footer-section ul li a {
         color: #d1d1d1 !important;
         text-decoration: none !important;
-        font-size: 0.9rem !important;
+        font-size: 0.95rem !important;
         transition: color 0.3s ease !important;
     }
 
@@ -514,21 +514,21 @@
 
     body #page-footer .social-icons {
         display: flex !important;
-        gap: 12px !important;
+        gap: 15px !important;
     }
 
     body #page-footer .social-icon {
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        width: 36px !important;
-        height: 36px !important;
+        width: 40px !important;
+        height: 40px !important;
         background: rgba(255, 255, 255, 0.1) !important;
         border-radius: 50% !important;
         color: #fff !important;
         text-decoration: none !important;
-        font-size: 1.1rem !important;
-        transition: all 0.3s ease !important;
+        font-size: 1.2rem !important;
+        transition: background 0.3s ease, transform 0.3s ease !important;
     }
 
     body #page-footer .social-icon:hover {
@@ -541,12 +541,12 @@
         background: #64ffd6 !important;
         color: #1a3c34 !important;
         border: none !important;
-        padding: 8px 16px !important;
-        font-size: 0.9rem !important;
+        padding: 10px 20px !important;
+        font-size: 0.95rem !important;
         font-weight: 600 !important;
         border-radius: 25px !important;
         cursor: pointer !important;
-        transition: all 0.3s ease !important;
+        transition: background 0.3s ease, transform 0.3s ease !important;
         width: fit-content !important;
     }
 
@@ -558,8 +558,8 @@
     body #page-footer .contact-form {
         display: none !important;
         flex-direction: column !important;
-        gap: 8px !important;
-        margin-top: 8px !important;
+        gap: 10px !important;
+        margin-top: 10px !important;
         width: 100% !important;
     }
 
@@ -571,11 +571,11 @@
         background: rgba(255, 255, 255, 0.1) !important;
         border: 1px solid rgba(255, 255, 255, 0.2) !important;
         border-radius: 8px !important;
-        padding: 8px !important;
+        padding: 10px !important;
         color: #fff !important;
-        font-size: 0.9rem !important;
+        font-size: 0.95rem !important;
         resize: vertical !important;
-        min-height: 80px !important;
+        min-height: 100px !important;
         outline: none !important;
         transition: border 0.3s ease !important;
         width: 100% !important;
@@ -589,12 +589,12 @@
         background: #64ffd6 !important;
         color: #1a3c34 !important;
         border: none !important;
-        padding: 8px !important;
-        font-size: 0.9rem !important;
+        padding: 10px !important;
+        font-size: 0.95rem !important;
         font-weight: 600 !important;
         border-radius: 25px !important;
         cursor: pointer !important;
-        transition: all 0.3s ease !important;
+        transition: background 0.3s ease, transform 0.3s ease !important;
     }
 
     body #page-footer .contact-form button:hover {
@@ -604,14 +604,15 @@
 
     body #page-footer .footer-bottom {
         text-align: center !important;
-        padding-top: 15px !important;
+        padding-top: 20px !important;
         border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+        margin-top: -20px !important;
     }
 
     body #page-footer .footer-bottom p {
-        font-size: 0.8rem !important;
+        font-size: 0.85rem !important;
         color: #b0b0b0 !important;
-        margin: 8px 0 0 !important;
+        margin: 10px 0 0 !important;
     }
 
     @media (max-width: 768px) {
@@ -630,7 +631,10 @@
     }
 </style>
 
-<!-- Preload images for performance (optional, using static as fallback) -->
+<!-- Include Font Awesome for social icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Preload images for performance -->
 @php
     $lemonBg = $heroImages->where('title', 'Lemon Ginger Background')->first();
     $tangerineBg = $heroImages->where('title', 'Tangerine Ginger Background')->first();
@@ -666,7 +670,7 @@
             </a>
         </div>
     </div>
-    <a href="{{ url('/order') }}" class="hero-btn-cta">Order</a>
+    <a href="https://wa.me/+256776644143?text=Hello%20Tropical%20Cane%20Juice%2C%20I%20would%20like%20to%20place%20an%20order%20for%20your%20fresh%20juices!" class="hero-btn-cta" target="_blank">Order</a>
 </div>
 
 <footer id="page-footer">
@@ -796,6 +800,25 @@
             updateBackground();
             animateBottles();
         }, 600);
+    }
+
+    function toggleContactForm() {
+        const form = document.getElementById('contactForm');
+        form.classList.toggle('active');
+    }
+
+    function sendToWhatsApp() {
+        const message = document.getElementById('contactMessage').value.trim();
+        if (!message) {
+            alert('Please enter a message before submitting.');
+            return;
+        }
+        const whatsappNumber = '+256776644143';
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        window.open(whatsappUrl, '_blank');
+        document.getElementById('contactMessage').value = '';
+        document.getElementById('contactForm').classList.remove('active');
     }
 
     createWaveText(phrases[index].text);

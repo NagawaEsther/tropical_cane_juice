@@ -1,637 +1,6 @@
-{{-- 
-@extends('frontend.layout')
-@section('content')
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-    
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    
-    .contact-wrapper {
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #ff8c00 0%, #32cd32 100%);
-        min-height: 100vh;
-        position: relative;
-        overflow-x: hidden;
-    }
-    
-    /* Animated Background Blobs */
-    .blob-container {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        overflow: hidden;
-    }
-    
-    .blob {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(40px);
-        opacity: 0.7;
-        animation: float-blob 20s infinite ease-in-out;
-    }
-    
-    .blob:nth-child(1) {
-        width: 300px;
-        height: 300px;
-        background: rgba(255, 215, 0, 0.3);
-        top: 10%;
-        left: -10%;
-        animation-delay: 0s;
-    }
-    
-    .blob:nth-child(2) {
-        width: 200px;
-        height: 200px;
-        background: rgba(50, 205, 50, 0.3);
-        top: 50%;
-        right: -5%;
-        animation-delay: -7s;
-    }
-    
-    .blob:nth-child(3) {
-        width: 250px;
-        height: 250px;
-        background: rgba(255, 140, 0, 0.4);
-        bottom: 20%;
-        left: 20%;
-        animation-delay: -14s;
-    }
-    
-    @keyframes float-blob {
-        0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
-        33% { transform: translateY(-30px) translateX(20px) scale(1.1); }
-        66% { transform: translateY(20px) translateX(-20px) scale(0.9); }
-    }
-    
-    /* Hero Section with Split Layout */
-    .hero-section {
-        position: relative;
-        z-index: 2;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        min-height: 100vh;
-        align-items: center;
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 40px;
-        gap: 80px;
-    }
-    
-    @media (max-width: 968px) {
-        .hero-section {
-            grid-template-columns: 1fr;
-            gap: 40px;
-            padding: 80px 20px;
-            min-height: auto;
-        }
-    }
-    
-    .hero-content {
-        color: white;
-        position: relative;
-    }
-    
-    .hero-badge {
-        display: inline-block;
-        background: rgba(255, 255, 255, 0.2);
-        backdrop-filter: blur(10px);
-        padding: 8px 20px;
-        border-radius: 50px;
-        font-size: 0.9rem;
-        font-weight: 500;
-        margin-bottom: 30px;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-    
-    .hero-title {
-        font-size: clamp(3rem, 6vw, 5rem);
-        font-weight: 800;
-        line-height: 1.1;
-        margin-bottom: 25px;
-        background: linear-gradient(135deg, #ffffff 0%, #fffacd 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-    
-    .hero-subtitle {
-        font-size: 1.3rem;
-        font-weight: 300;
-        line-height: 1.6;
-        opacity: 0.9;
-        margin-bottom: 40px;
-    }
-    
-    .hero-stats {
-        display: flex;
-        gap: 40px;
-        margin-bottom: 40px;
-    }
-    
-    .stat-item {
-        text-align: center;
-    }
-    
-    .stat-number {
-        font-size: 2.5rem;
-        font-weight: 700;
-        display: block;
-    }
-    
-    .stat-label {
-        font-size: 0.9rem;
-        opacity: 0.8;
-        font-weight: 400;
-    }
-    
-    /* Contact Form Card */
-    .contact-form-card {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        border-radius: 32px;
-        padding: 50px;
-        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .contact-form-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 6px;
-        background: linear-gradient(90deg, #ff8c00, #32cd32, #ffd700);
-    }
-    
-    .form-header {
-        text-align: center;
-        margin-bottom: 40px;
-    }
-    
-    .form-title {
-        font-size: 2.2rem;
-        font-weight: 700;
-        color: #1a202c;
-        margin-bottom: 12px;
-    }
-    
-    .form-subtitle {
-        color: #718096;
-        font-size: 1.1rem;
-        font-weight: 400;
-    }
-    
-    /* Contact Methods Grid */
-    .contact-methods {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-        margin-bottom: 50px;
-    }
-    
-    .method-card {
-        background: #f8fafc;
-        border-radius: 20px;
-        padding: 30px 25px;
-        text-align: center;
-        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        border: 2px solid transparent;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .method-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255, 140, 0, 0.1), transparent);
-        transition: left 0.6s ease;
-    }
-    
-    .method-card:hover {
-        transform: translateY(-8px);
-        border-color: #ff8c00;
-        box-shadow: 0 20px 40px rgba(255, 140, 0, 0.15);
-    }
-    
-    .method-card:hover::before {
-        left: 100%;
-    }
-    
-    .method-icon {
-        width: 70px;
-        height: 70px;
-        border-radius: 18px;
-        background: linear-gradient(135deg, #ff8c00, #32cd32);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0 auto 20px;
-        font-size: 28px;
-        color: white;
-        box-shadow: 0 12px 32px rgba(255, 140, 0, 0.3);
-    }
-    
-    .method-title {
-        font-size: 1.3rem;
-        font-weight: 600;
-        color: #1a202c;
-        margin-bottom: 8px;
-    }
-    
-    .method-text {
-        color: #4a5568;
-        font-size: 0.95rem;
-        margin-bottom: 15px;
-    }
-    
-    .method-link {
-        color: #ff8c00;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 1.05rem;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        transition: all 0.3s ease;
-    }
-    
-    .method-link:hover {
-        color: #32cd32;
-        transform: translateX(4px);
-    }
-    
-    /* Interactive Map Section */
-    .map-section {
-        margin: 80px 40px;
-        max-width: 1400px;
-        margin-left: auto;
-        margin-right: auto;
-        position: relative;
-        z-index: 2;
-    }
-    
-    .map-container {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        border-radius: 32px;
-        overflow: hidden;
-        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.1);
-        position: relative;
-    }
-    
-    .map-container::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 6px;
-        background: linear-gradient(90deg, #ff8c00, #32cd32, #ffd700, #ff6347);
-        z-index: 1;
-    }
-    
-    .map-header {
-        padding: 40px 40px 20px;
-        text-align: center;
-    }
-    
-    .map-title {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #1a202c;
-        margin-bottom: 12px;
-    }
-    
-    .map-subtitle {
-        color: #718096;
-        font-size: 1.1rem;
-    }
-    
-    .map-wrapper {
-        position: relative;
-        height: 450px;
-        border-radius: 0 0 32px 32px;
-        overflow: hidden;
-    }
-    
-    .map-wrapper iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-        filter: saturate(1.2) contrast(1.1);
-        transition: filter 0.4s ease;
-    }
-    
-    .map-wrapper:hover iframe {
-        filter: saturate(1.4) contrast(1.2);
-    }
-    
-    /* Social Links Section */
-    .social-section {
-        background: rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(20px);
-        padding: 60px 40px;
-        text-align: center;
-        position: relative;
-        z-index: 2;
-    }
-    
-    .social-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: white;
-        margin-bottom: 20px;
-    }
-    
-    .social-subtitle {
-        font-size: 1.2rem;
-        color: rgba(255, 255, 255, 0.9);
-        margin-bottom: 40px;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 25px;
-        flex-wrap: wrap;
-    }
-    
-    .social-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 70px;
-        height: 70px;
-        border-radius: 20px;
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(10px);
-        color: white;
-        text-decoration: none;
-        font-size: 28px;
-        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        border: 2px solid rgba(255, 255, 255, 0.2);
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .social-link::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, #ff8c00, #32cd32);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-    
-    .social-link:hover {
-        transform: translateY(-8px) scale(1.1);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-        border-color: rgba(255, 255, 255, 0.4);
-    }
-    
-    .social-link:hover::before {
-        opacity: 1;
-    }
-    
-    .social-link span {
-        position: relative;
-        z-index: 1;
-    }
-    
-    /* Business Hours Card */
-    .hours-card {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        border-radius: 24px;
-        padding: 35px;
-        margin: 40px auto 0;
-        max-width: 500px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    
-    .hours-title {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: #1a202c;
-        text-align: center;
-        margin-bottom: 25px;
-    }
-    
-    .hours-list {
-        list-style: none;
-    }
-    
-    .hours-item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 12px 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        color: #4a5568;
-    }
-    
-    .hours-item:last-child {
-        border-bottom: none;
-    }
-    
-    .hours-day {
-        font-weight: 500;
-    }
-    
-    .hours-time {
-        font-weight: 400;
-        color: #ff8c00;
-    }
-    
-    @media (max-width: 768px) {
-        .contact-form-card {
-            padding: 30px 25px;
-        }
-        
-        .map-section {
-            margin: 40px 20px;
-        }
-        
-        .hero-stats {
-            flex-direction: column;
-            gap: 20px;
-            text-align: center;
-        }
-        
-        .contact-methods {
-            grid-template-columns: 1fr;
-        }
-        
-        .social-links {
-            gap: 15px;
-        }
-        
-        .social-link {
-            width: 60px;
-            height: 60px;
-            font-size: 24px;
-        }
-    }
-</style>
 
-<div class="contact-wrapper">
-    <!-- Animated Background Blobs -->
-    <div class="blob-container">
-        <div class="blob"></div>
-        <div class="blob"></div>
-        <div class="blob"></div>
-    </div>
+ @extends('frontend.layout')
 
-    <!-- Hero Section with Split Layout -->
-    <div class="hero-section">
-        <div class="hero-content">
-            <div class="hero-badge">🥤 Fresh & Natural</div>
-            <h1 class="hero-title">Let's Create Something Fresh Together</h1>
-            <p class="hero-subtitle">Experience the purest taste of tropical sugarcane juice. We're here to serve you the best, freshest flavors straight from nature.</p>
-            
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Natural</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">24/7</span>
-                    <span class="stat-label">Available</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">5★</span>
-                    <span class="stat-label">Rated</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="contact-form-card">
-            <div class="form-header">
-                <h2 class="form-title">Get in Touch</h2>
-                <p class="form-subtitle">Choose your preferred way to connect with us</p>
-            </div>
-
-            <div class="contact-methods">
-                <div class="method-card">
-                    <div class="method-icon">📍</div>
-                    <h3 class="method-title">Visit Us</h3>
-                    <p class="method-text">Kyambogo - Banda<br>Kampala, Uganda</p>
-                    <a href="https://maps.google.com" target="_blank" class="method-link">
-                        Get Directions →
-                    </a>
-                </div>
-
-                <div class="method-card">
-                    <div class="method-icon">📞</div>
-                    <h3 class="method-title">Call Us</h3>
-                    <p class="method-text">Ready to take your order</p>
-                    <a href="tel:+256776644143" class="method-link">
-                        +256 776 644143 →
-                    </a>
-                </div>
-
-                <div class="method-card">
-                    <div class="method-icon">💬</div>
-                    <h3 class="method-title">WhatsApp</h3>
-                    <p class="method-text">Quick chat & instant orders</p>
-                    <a href="https://wa.me/256776644143" target="_blank" class="method-link">
-                        Message Now →
-                    </a>
-                </div>
-
-                <div class="method-card">
-                    <div class="method-icon">📧</div>
-                    <h3 class="method-title">Email</h3>
-                    <p class="method-text">For business inquiries</p>
-                    <a href="mailto:info@tropicalcane.com" class="method-link">
-                        Send Email →
-                    </a>
-                </div>
-            </div>
-
-            <div class="hours-card">
-                <h3 class="hours-title">Business Hours</h3>
-                <ul class="hours-list">
-                    <li class="hours-item">
-                        <span class="hours-day">Monday - Friday</span>
-                        <span class="hours-time">8:00 AM - 8:00 PM</span>
-                    </li>
-                    <li class="hours-item">
-                        <span class="hours-day">Saturday</span>
-                        <span class="hours-time">8:00 AM - 9:00 PM</span>
-                    </li>
-                    <li class="hours-item">
-                        <span class="hours-day">Sunday</span>
-                        <span class="hours-time">10:00 AM - 6:00 PM</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- Interactive Map Section -->
-    <div class="map-section">
-        <div class="map-container">
-            <div class="map-header">
-                <h2 class="map-title">Find Our Tropical Paradise</h2>
-                <p class="map-subtitle">Located in the heart of Kampala, easy to reach and always fresh</p>
-            </div>
-            <div class="map-wrapper">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7977.598859866826!2d32.62435752331524!3d0.3475854785225387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177dbc78ec382e95%3A0x5e9d295fa01b1f71!2sKyambogo%20University%2C%20Kampala!5e0!3m2!1sen!2sug!4v1719932357890!5m2!1sen!2sug"
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
-        </div>
-    </div>
-
-    <!-- Social Links Section -->
-    <div class="social-section">
-        <h2 class="social-title">Stay Connected</h2>
-        <p class="social-subtitle">Follow us for daily fresh updates, health tips, and exclusive tropical juice recipes</p>
-        
-        <div class="social-links">
-            <a href="https://facebook.com/yourpage" target="_blank" class="social-link">
-                <span>📘</span>
-            </a>
-            <a href="https://instagram.com/yourpage" target="_blank" class="social-link">
-                <span>📷</span>
-            </a>
-            <a href="https://wa.me/256776644143" target="_blank" class="social-link">
-                <span>💬</span>
-            </a>
-            <a href="https://twitter.com/yourpage" target="_blank" class="social-link">
-                <span>🐦</span>
-            </a>
-        </div>
-    </div>
-</div>
-
-@endsection --}}
-
-
-@extends('frontend.layout')
 @section('content')
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -957,7 +326,240 @@
         position: relative;
         z-index: 2;
     }
+
+    /* Footer Styles from About Us */
+    #page-footer {
+        background: linear-gradient(180deg, #1a3c34 0%, #0f2a22 100%) !important;
+        color: #fff !important;
+        position: relative !important;
+        padding: 60px 0 20px !important;
+        overflow: hidden !important;
+        font-family: 'Arial', sans-serif !important;
+        margin: 0 !important;
+        border-top: none !important;
+        width: 100vw !important;
+        margin-left: calc(-50vw + 50%) !important;
+    }
+
+    #page-footer .footer-glow {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        background: radial-gradient(circle at 50% 0%, rgba(100, 255, 218, 0.2) 0%, transparent 70%) !important;
+        z-index: 0 !important;
+        opacity: 0.5 !important;
+        pointer-events: none !important;
+    }
+
+    #page-footer .footer-container {
+        max-width: 1200px !important;
+        margin: 0 auto !important;
+        padding: 0 20px !important;
+        position: relative !important;
+        z-index: 1 !important;
+    }
+
+    #page-footer .footer-content {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+        gap: 40px !important;
+        margin-bottom: 40px !important;
+    }
+
+    #page-footer .footer-section {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+    }
+
+    #page-footer .footer-section h4 {
+        font-size: 1.2rem !important;
+        font-weight: 600 !important;
+        color: #64ffd6 !important;
+        margin-bottom: 10px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+    }
+
+    #page-footer .footer-section.links ul {
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 15px !important;
+    }
+
+    #page-footer .footer-section.links ul li {
+        margin-bottom: 0 !important;
+        white-space: nowrap !important;
+    }
+
+    #page-footer .footer-section ul li a {
+        color: #d1d1d1 !important;
+        text-decoration: none !important;
+        font-size: 0.95rem !important;
+        transition: color 0.3s ease !important;
+    }
+
+    #page-footer .footer-section ul li a:hover {
+        color: #64ffd6 !important;
+        text-decoration: none !important;
+    }
+
+    #page-footer .social-icons {
+        display: flex !important;
+        gap: 15px !important;
+    }
+
+    #page-footer .social-icon {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 40px !important;
+        height: 40px !important;
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-radius: 50% !important;
+        color: #fff !important;
+        text-decoration: none !important;
+        font-size: 1.2rem !important;
+        transition: background 0.3s ease, transform 0.3s ease !important;
+    }
+
+    #page-footer .social-icon:hover {
+        background: #64ffd6 !important;
+        color: #1a3c34 !important;
+        transform: scale(1.1) !important;
+    }
+
+    #page-footer .contact-toggle {
+        background: #64ffd6 !important;
+        color: #1a3c34 !important;
+        border: none !important;
+        padding: 10px 20px !important;
+        font-size: 0.95rem !important;
+        font-weight: 600 !important;
+        border-radius: 25px !important;
+        cursor: pointer !important;
+        transition: background 0.3s ease, transform 0.3s ease !important;
+        width: fit-content !important;
+    }
+
+    #page-footer .contact-toggle:hover {
+        background: #4ad9b8 !important;
+        transform: translateY(-2px) !important;
+    }
+
+    #page-footer .contact-form {
+        display: none !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        margin-top: 10px !important;
+        width: 100% !important;
+    }
+
+    #page-footer .contact-form.active {
+        display: flex !important;
+    }
+
+    #page-footer .contact-form textarea {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        border-radius: 8px !important;
+        padding: 10px !important;
+        color: #fff !important;
+        font-size: 0.95rem !important;
+        resize: vertical !important;
+        min-height: 100px !important;
+        outline: none !important;
+        transition: border 0.3s ease !important;
+        width: 100% !important;
+    }
+
+    #page-footer .contact-form textarea:focus {
+        border-color: #64ffd6 !important;
+    }
+
+    #page-footer .contact-form button {
+        background: #64ffd6 !important;
+        color: #1a3c34 !important;
+        border: none !important;
+        padding: 10px !important;
+        font-size: 0.95rem !important;
+        font-weight: 600 !important;
+        border-radius: 25px !important;
+        cursor: pointer !important;
+        transition: background 0.3s ease, transform 0.3s ease !important;
+    }
+
+    #page-footer .contact-form button:hover {
+        background: #4ad9b8 !important;
+        transform: translateY(-2px) !important;
+    }
+
+    #page-footer .footer-bottom {
+        text-align: center !important;
+        padding-top: 20px !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+        margin-top: -20px !important;
+    }
+
+    #page-footer .footer-bottom p {
+        font-size: 0.85rem !important;
+        color: #b0b0b0 !important;
+        margin: 10px 0 0 !important;
+    }
+
+    @media (max-width: 768px) {
+        #page-footer .footer-content {
+            grid-template-columns: 1fr !important;
+            text-align: center !important;
+            gap: 20px !important;
+        }
+
+        #page-footer .footer-section {
+            align-items: center !important;
+        }
+
+        #page-footer .footer-section.links ul {
+            justify-content: center !important;
+        }
+
+        #page-footer .social-icons {
+            justify-content: center !important;
+        }
+
+        #page-footer .contact-toggle {
+            margin: 0 auto !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        #page-footer {
+            padding: 25px 0 15px !important;
+        }
+
+        #page-footer .footer-content {
+            gap: 20px !important;
+        }
+
+        #page-footer .footer-section h4 {
+            font-size: 1rem !important;
+        }
+
+        #page-footer .footer-section.links ul {
+            flex-direction: column !important;
+            gap: 8px !important;
+            align-items: center !important;
+        }
+    }
 </style>
+
+<!-- Include Font Awesome for social icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <div class="contact-hero">
     <div class="floating-shapes"></div>
@@ -966,7 +568,7 @@
         <p class="hero-subtitle">Ready to experience the freshest tropical flavors? Reach out to us and let's create something amazing together.</p>
     </div>
 </div>
-
+<br>
 <div class="contact-container">
     <div class="contact-grid">
         <!-- Contact Information Card -->
@@ -1025,7 +627,7 @@
             </div>
         </div>
     </div>
-
+<br>
     <!-- Google Map -->
     <div class="map-container">
         <iframe 
@@ -1035,7 +637,7 @@
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
     </div>
-
+<br>
     <!-- Call to Action -->
     <div class="cta-section">
         <h2 class="cta-title">Ready for Fresh Tropical Flavors?</h2>
@@ -1043,7 +645,63 @@
     </div>
 </div>
 
-@include('frontend.footer')
+<br>
+
+<footer id="page-footer">
+    <div class="footer-glow"></div>
+    <div class="footer-container">
+        <div class="footer-content">
+            <div class="footer-section links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/juices">Juices</a></li>
+                    <li><a href="/tips">Health Tips</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-icons">
+                    <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <button class="contact-toggle" onclick="toggleContactForm()">Message Us</button>
+                <div class="contact-form" id="contactForm">
+                    <textarea placeholder="Your message..." id="contactMessage"></textarea>
+                    <button onclick="sendToWhatsApp()">Send</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Tropical Cane Juice. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function toggleContactForm() {
+        const form = document.getElementById('contactForm');
+        form.classList.toggle('active');
+    }
+
+    function sendToWhatsApp() {
+        const message = document.getElementById('contactMessage').value.trim();
+        if (!message) {
+            alert('Please enter a message before submitting.');
+            return;
+        }
+        const whatsappNumber = '+256776644143';
+        const encodedMessage = encodeURIComponent(message);
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+        window.open(whatsappUrl, '_blank');
+        document.getElementById('contactMessage').value = '';
+        document.getElementById('contactForm').classList.remove('active');
+    }
+</script>
 
 @endsection
-
