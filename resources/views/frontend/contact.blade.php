@@ -1,5 +1,4 @@
-
- @extends('frontend.layout')
+@extends('frontend.layout')
 
 @section('content')
 <style>
@@ -66,6 +65,9 @@
         text-align: center;
         padding: 100px 20px 80px;
         color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     
     .hero-title {
@@ -87,6 +89,221 @@
         max-width: 600px;
         margin: 0 auto;
         line-height: 1.6;
+        text-align: center;
+    }
+    
+    .contact-container {
+        max-width: 1200px;
+        margin: -60px auto 0;
+        padding: 0 20px 80px;
+        position: relative;
+        z-index: 3;
+    }
+    
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 60px;
+    }
+    
+    @media (max-width: 768px) {
+        .contact-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+    }
+    
+    .contact-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        padding: 40px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .contact-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #ff8c00, #32cd32, #ffd700, #ff6347, #7fff00);
+        transition: all 0.3s ease;
+    }
+    
+    .contact-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    }
+    
+    .contact-card:hover::before {
+        height: 6px;
+    }
+    
+    .card-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+        background: linear-gradient(135deg, #ff8c00 0%, #32cd32 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 24px;
+        font-size: 24px;
+        color: white;
+        box-shadow: 0 8px 32px rgba(255, 140, 0, 0.4);
+    }
+    
+    .card-title {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1a202c;
+        margin-bottom: 16px;
+    }
+    
+    .card-content {
+        color: #4a5568;
+        line-height: 1.6;
+        font-size: 1rem;
+    }
+    
+    .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
+        padding: 12px;
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+    
+    .contact-item:hover {
+        background: rgba(255, 140, 0, 0.08);
+        transform: translateX(8px);
+    }
+    
+    .contact-item-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #ff8c00, #32cd32);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 16px;
+        font-size: 16px;
+        color: white;
+        flex-shrink: 0;
+    }
+    
+    .contact-link {
+        color: #ff8c00;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    
+    .contact-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #ff8c00, #32cd32);
+        transition: width 0.3s ease;
+    }
+    
+    .contact-link:hover::after {
+        width: 100%;
+    }
+    
+    .map-container {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba historians://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1.5" fill="rgba(255,255,255,0.08)"/><circle cx="50" cy="10" r="0.8" fill="rgba(255,255,255,0.12)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+        opacity: 0.3;
+    }
+    
+    .floating-shapes {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        pointer-events: none;
+    }
+    
+    .floating-shapes::before,
+    .floating-shapes::after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 215, 0, 0.2);
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    .floating-shapes::before {
+        width: 80px;
+        height: 80px;
+        top: 20%;
+        left: 10%;
+        animation-delay: -2s;
+    }
+    
+    .floating-shapes::after {
+        width: 120px;
+        height: 120px;
+        top: 60%;
+        right: 15%;
+        animation-delay: -4s;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 100px 20px 80px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-title {
+        font-family: 'Inter', sans-serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 700;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, #ffffff 0%, #fffacd 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 4px 20px rgba(255,140,0,0.3);
+    }
+    
+    .hero-subtitle {
+        font-size: 1.25rem;
+        font-weight: 300;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+        text-align: center;
     }
     
     .contact-container {
@@ -587,7 +804,7 @@
                     <div class="contact-item-icon">📧</div>
                     <div>
                         <strong>Email Us</strong><br>
-                        <a href="mailto:info@tropicalcane.com" class="contact-link">info@tropicalcane.com</a>
+                        <a href="mailto:canetropical@gmail.com" class="contact-link">canetropical@gmail.com</a>
                     </div>
                 </div>
                 <div class="contact-item">

@@ -25,6 +25,8 @@
         color: #006600;
         text-align: center;
         margin-bottom: 20px;
+        padding-left: 5%;
+        padding-right: 5%;
     }
 
     .highlight {
@@ -32,7 +34,7 @@
     }
 
     .about-text {
-        text-align: center;
+        text-align: left;
         font-size: 1.25rem;
         margin-bottom: 40px;
         line-height: 1.6;
@@ -83,7 +85,6 @@
         margin: 80px 0;
         border-radius: 0;
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-        text-align: center;
         width: 100%;
     }
 
@@ -91,12 +92,17 @@
         color: #ff6600;
         font-size: 2rem;
         margin-top: 20px;
+        text-align: center;
+        padding-left: 5%;
+        padding-right: 5%;
     }
 
     .mission-vision p {
         font-size: 1.1rem;
         line-height: 1.6;
         color: #444;
+        text-align: left;
+        padding: 0 5%;
     }
 
     .images-section {
@@ -140,14 +146,17 @@
         padding: 60px 20px;
         margin: 0;
         border-radius: 0;
-        text-align: center;
         width: 100%;
+        text-align: center;
     }
 
     .why-us h3 {
         font-size: 2rem;
         color: #00695c;
         margin-bottom: 25px;
+        text-align: center;
+        padding-left: 5%;
+        padding-right: 5%;
     }
 
     .why-us ul {
@@ -155,22 +164,51 @@
         padding: 0;
         max-width: 900px;
         margin: 0 auto;
+        text-align: center;
+        display: inline-block;
     }
 
     .why-us ul li {
         font-size: 1.15rem;
         margin-bottom: 15px;
         position: relative;
-        padding-left: 25px;
+        padding-left: 40px;
         color: #333;
+        text-align: left;
+        display: block;
     }
 
     .why-us ul li::before {
         content: '✔';
-        position: absolute;
-        left: 0;
         color: #2e7d32;
         font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .why-us .description-container {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 0 5%;
+    }
+
+    .why-us .description-container p {
+        font-size: 1.15rem;
+        margin-bottom: 15px;
+        position: relative;
+        padding-left: 40px;
+        color: #333;
+        text-align: left;
+        display: block;
+    }
+
+    .why-us .description-container p::before {
+        content: '✔';
+        position: absolute;
+        left: 10px;
+        color: #2e7d32;
+        font-weight: bold;
+        font-size: 1.2rem;
     }
 
     .dynamic-section {
@@ -187,13 +225,16 @@
         font-size: 1.8rem;
         margin-bottom: 20px;
         text-align: center;
+        padding-left: 5%;
+        padding-right: 5%;
     }
 
     .dynamic-section p {
         font-size: 1.1rem;
         line-height: 1.6;
         color: #555;
-        text-align: center;
+        text-align: left;
+        padding: 0 5%;
     }
 
     .dynamic-section img {
@@ -394,6 +435,8 @@
     @media (max-width: 768px) {
         .about-title {
             font-size: 2.5rem;
+            padding-left: 3%;
+            padding-right: 3%;
         }
 
         .about-text {
@@ -418,6 +461,19 @@
         .mission-vision, .dynamic-section {
             margin: 40px 0;
             padding: 30px 20px;
+        }
+
+        .mission-vision h3, .why-us h3, .dynamic-section h3 {
+            padding-left: 3%;
+            padding-right: 3%;
+        }
+
+        .mission-vision p, .dynamic-section p {
+            padding: 0 3%;
+        }
+
+        .why-us ul, .why-us .description-container {
+            padding: 0 3%;
         }
 
         .why-us {
@@ -450,10 +506,13 @@
     @media (max-width: 480px) {
         .about-title {
             font-size: 2rem;
+            padding-left: 3%;
+            padding-right: 3%;
         }
 
         .about-text {
             font-size: 1rem;
+            padding: 0 3%;
         }
 
         .flavor-card {
@@ -463,6 +522,8 @@
 
         .mission-vision h3, .why-us h3, .dynamic-section h3 {
             font-size: 1.5rem;
+            padding-left: 3%;
+            padding-right: 3%;
         }
 
         .flavor-card {
@@ -472,6 +533,14 @@
         .image-card .image-container {
             width: 280px;
             height: 200px;
+        }
+
+        .mission-vision p, .dynamic-section p {
+            padding: 0 3%;
+        }
+
+        .why-us ul, .why-us .description-container {
+            padding: 0 3%;
         }
 
         #page-footer {
@@ -500,8 +569,9 @@
 <div class="about-container">
     <h2 class="about-title">About <span class="highlight">Tropical Cane</span> Juice</h2>
     <p class="about-text">
-        At Tropical Cane, we are passionate about delivering fresh, 100% natural sugarcane juices that invigorate your body and mind. 
-        Every sip combines nature's sweetness with health-boosting flavors like Lemon & Ginger or Tangerine & Ginger — crafted to energize and nourish.
+      Tropical Cane is a Ugandan beverage company specializing in the production of freshly extracted, all-natural sugarcane juice. Unlike traditional roadside vendors, we offer a hygienic, certified product that is free from added sugars, preservatives, or artificial ingredients. Our product is enriched with fresh lemon and ginger, offering both a refreshing and health-conscious alternative to sugary drinks.
+
+      We are committed to creating value by offering a premium, all-natural beverage while supporting sustainable agricultural practices. Our goal is to expand into international markets and position Tropical Cane as a leading brand in healthy beverages.
     </p>
 
     @if($sections->isNotEmpty())
@@ -551,12 +621,12 @@
         @endphp
         
         <h3>Our Mission</h3>
-        <p>{{ $missionSection && $missionSection->description ? $missionSection->description : 'To deliver 100% pure sugarcane juice made with love – no additives, no water, no preservatives. Just the real thing.' }}</p>
+        <p>{{ $missionSection && $missionSection->description ? $missionSection->description : 'To provide safe, hygienic, and all-natural sugarcane juice, sourced from locally grown sugarcanes, while promoting sustainable agriculture and offering a healthier alternative to sugary, mass-produced drinks.' }}</p>
         
         <br>
         
         <h3>Our Vision</h3>
-        <p>{{ $visionSection && $visionSection->description ? $visionSection->description : 'To lead the East African beverage market by promoting wellness and joy, one refreshing bottle at a time.' }}</p>
+        <p>{{ $visionSection && $visionSection->description ? $visionSection->description : 'Tropical Cane’s vision is to diversify the established brand into a broader range of beverages, tapping into the global market for natural, healthy drinks. By leveraging the channels established through our core product, we will introduce new flavors and product lines while expanding our distribution footprint across Uganda and beyond. In the future, we also aim to export our products to larger international markets, positioning Tropical Cane as a globally recognized brand in the healthy beverage sector.' }}</p>
     </div>
     <br>
     <div class="flavors-section">
@@ -579,7 +649,7 @@
                 <img src="{{ $processSection && $processSection->image_path ? Storage::url($processSection->image_path) : asset('images/juice_process.jpg') }}" alt="Juice Process">
             </div>
             <h4>Juice Process</h4>
-             <p>{{ $processSection && $processSection->description ? $processSection->description : 'The production process in progress' }}</p>
+            <p>{{ $processSection && $processSection->description ? $processSection->description : 'The production process in progress' }}</p>
         </div>
     </div>
     <br>
@@ -590,8 +660,12 @@
         
         <h3>Why Choose Tropical Cane?</h3>
         @if($whyUsSection && $whyUsSection->description)
-            <div style="max-width: 900px; margin: 0 auto; text-align: left;">
-                {!! nl2br(e($whyUsSection->description)) !!}
+            <div class="description-container">
+                @foreach(explode("\n", trim($whyUsSection->description)) as $item)
+                    @if(trim($item))
+                        <p>{{ trim($item) }}</p>
+                    @endif
+                @endforeach
             </div>
         @else
             <ul>
