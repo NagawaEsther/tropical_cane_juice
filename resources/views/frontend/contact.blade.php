@@ -782,7 +782,7 @@
     <div class="floating-shapes"></div>
     <div class="hero-content">
         <h1 class="hero-title">Let's Connect</h1>
-        <p class="hero-subtitle">Ready to experience the freshest tropical flavors? Reach out to us and let's create something amazing together.</p>
+        <p class="hero-subtitle">Ready to experience the freshest Cane flavors? Reach out to us and let's create something amazing together.</p>
     </div>
 </div>
 <br>
@@ -796,7 +796,7 @@
                 <div class="contact-item">
                     <div class="contact-item-icon">🏢</div>
                     <div>
-                        <strong>Tropical Cane Juice HQ</strong><br>
+                        <strong>Cane 2025 Juice HQ</strong><br>
                         Kyambogo - Banda, Kampala, Uganda
                     </div>
                 </div>
@@ -857,7 +857,7 @@
 <br>
     <!-- Call to Action -->
     <div class="cta-section">
-        <h2 class="cta-title">Ready for Fresh Tropical Flavors?</h2>
+        <h2 class="cta-title">Ready for Fresh Cane Flavors?</h2>
         <p class="cta-text">Contact us today and discover why we're Kampala's favorite juice destination. Your taste buds will thank you!</p>
     </div>
 </div>

@@ -34,7 +34,7 @@
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
         <div class="mb-6">
             <a href="/">
-                <img src="{{ asset('images/TC_LOGO.jpg') }}" alt="Tropical Cane Logo" class="w-16 h-16 object-cover rounded-lg">
+                <img src="{{ asset('image.s/tc_logo.PNG') }}" alt="Tropical Cane Logo" class="w-16 h-16 object-cover rounded-lg">
             </a>
         </div>
         <div class="login-container">

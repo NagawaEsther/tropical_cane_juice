@@ -21,7 +21,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('images/TC_LOGO.jpg') }}?v={{ time() }}" alt="Logo" class="block h-16 w-auto" />
+                        <img src="{{ asset('image.s/tc_logo.PNG') }}?v={{ time() }}" alt="Logo" class="block h-16 w-auto" />
                     </a>
                 </div>
 

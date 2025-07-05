@@ -6,8 +6,8 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         {{-- <title>{{ config('app.name', 'Laravel') }}</title> --}}
-         <title>Tropical Cane Dashboard</title>
-        <link rel="icon" type="image/png" href="{{ asset('images/TC_LOGO.jpg') }}">
+         <title>Cane 2025 Dashboard</title>
+        <link rel="icon" type="image/png" href="{{ asset('image.s/tc_logo.PNG') }}">
 
 
         <!-- Fonts -->

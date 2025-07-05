@@ -567,9 +567,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <div class="about-container">
-    <h2 class="about-title">About <span class="highlight">Tropical Cane</span> Juice</h2>
+    <h2 class="about-title">About <span class="highlight"> Cane 2025</span> Juice</h2>
     <p class="about-text">
-      Tropical Cane is a Ugandan beverage company specializing in the production of freshly extracted, all-natural sugarcane juice. Unlike traditional roadside vendors, we offer a hygienic, certified product that is free from added sugars, preservatives, or artificial ingredients. Our product is enriched with fresh lemon and ginger, offering both a refreshing and health-conscious alternative to sugary drinks.
+      Cane 2025 is a Ugandan beverage company specializing in the production of freshly extracted, all-natural sugarcane juice. Unlike traditional roadside vendors, we offer a hygienic, certified product that is free from added sugars, preservatives, or artificial ingredients. Our product is enriched with fresh lemon and ginger, offering both a refreshing and health-conscious alternative to sugary drinks.
 
       We are committed to creating value by offering a premium, all-natural beverage while supporting sustainable agricultural practices. Our goal is to expand into international markets and position Tropical Cane as a leading brand in healthy beverages.
     </p>
@@ -626,7 +626,7 @@
         <br>
         
         <h3>Our Vision</h3>
-        <p>{{ $visionSection && $visionSection->description ? $visionSection->description : 'Tropical Cane’s vision is to diversify the established brand into a broader range of beverages, tapping into the global market for natural, healthy drinks. By leveraging the channels established through our core product, we will introduce new flavors and product lines while expanding our distribution footprint across Uganda and beyond. In the future, we also aim to export our products to larger international markets, positioning Tropical Cane as a globally recognized brand in the healthy beverage sector.' }}</p>
+        <p>{{ $visionSection && $visionSection->description ? $visionSection->description : 'Cane 2025’s vision is to diversify the established brand into a broader range of beverages, tapping into the global market for natural, healthy drinks. By leveraging the channels established through our core product, we will introduce new flavors and product lines while expanding our distribution footprint across Uganda and beyond. In the future, we also aim to export our products to larger international markets, positioning Tropical Cane as a globally recognized brand in the healthy beverage sector.' }}</p>
     </div>
     <br>
     <div class="flavors-section">
@@ -658,7 +658,7 @@
             $whyUsSection = $sections->where('title', 'Why Choose Tropical Cane?')->first();
         @endphp
         
-        <h3>Why Choose Tropical Cane?</h3>
+        <h3>Why Choose Cane 2025 Juice?</h3>
         @if($whyUsSection && $whyUsSection->description)
             <div class="description-container">
                 @foreach(explode("\n", trim($whyUsSection->description)) as $item)
