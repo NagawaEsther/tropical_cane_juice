@@ -696,8 +696,8 @@
             <div class="footer-section">
                 <h4>Connect</h4>
                 <div class="social-icons">
-                    <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.facebook.com/cane2025sugarcanejuice" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/cane_juice_2025" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
                     <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
